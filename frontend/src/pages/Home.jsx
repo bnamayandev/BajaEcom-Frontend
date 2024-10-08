@@ -1,14 +1,16 @@
 import React from 'react'
 import './Home.css'
-const Home = () => {
+import Card from '../components/Card'
+const Home = ({addToCart}) => {
   return (
     <div>
       <div className='home'>
         <h1>Official Western Baja Merch Store</h1>
       </div>
       <div className='cardSec'>
-        asdf
+        <Card addToCart={addToCart}/>
       </div>
+
     </div>
   )
 }

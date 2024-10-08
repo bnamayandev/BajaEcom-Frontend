@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '/logo.png'
 import './Navbar.css'
-const Navbar = () => {
+const Navbar = ({count}) => {
   return (
     <div>
         <nav>
@@ -10,6 +10,7 @@ const Navbar = () => {
                 <li><a href="">Home</a></li>
                 <li><a href="">Contact Us</a></li>
                 <li><a href="">Account</a></li>
+                <li><a href="">Cart ({count})</a></li>
             </ul>
         </nav>
     </div>
