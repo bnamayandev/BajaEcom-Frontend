@@ -1,5 +1,8 @@
 # BajaEcom
-Our Ecommerce website
+Our Ecommerce websitex
+
+## Documentation
+Branches: when creating a new feature branch, name it like: "feature-{featurename}".
 
 
 Check out how to build a mern stack: https://www.youtube.com/watch?v=XnbUHzZkypQ
