@@ -1,0 +1,27 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav > img {
+    width: 300px;
+}
+
+nav > ul {
+    display: flex;
+    list-style: none;
+}
+
+li > a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+
+li {
+    margin-right: 1rem;
+}
