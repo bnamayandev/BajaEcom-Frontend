@@ -7,13 +7,17 @@ import Navbar from './components/Navbar'
 import './App.css'
 
 function App() {
-
+  const [cart, setCart] = useState([])
+  const [count, setCount] = useState(0)
+  function addToCart() {
+    setCount(count + 1)
+  }
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Navbar count={count}/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home addToCart={addToCart} count={count}/>} />
           <Route path="/about" element={<Acocount />} />
         </Routes>
       </BrowserRouter>
