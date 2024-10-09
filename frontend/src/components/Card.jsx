@@ -1,15 +1,13 @@
-import React from 'react'
-import test from '/lucas.png'
-import './Card.css'
-const Card = ({addToCart}) => {
+import React from 'react';
+
+function Card({ card }) {
   return (
-    <div className='pCard'>
-        <img src={test} alt="" />
-        <h1>Product Title</h1>
-        <h4>Price</h4>
-        <button onClick={addToCart}>Add to Cart</button>
+    <div className="card">
+      <h2>{card.productName}</h2>
+      <p>{card.productDescription}</p>
+      <p>Price: ${card.price}</p>
     </div>
-  )
+  );
 }
 
-export default Card
+export default Card;
