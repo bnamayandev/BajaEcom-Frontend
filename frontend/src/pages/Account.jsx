@@ -2,7 +2,10 @@ import React from 'react'
 
 const Account = () => {
   return (
-    <div>Account</div>
+    <div>
+      <div>Account</div>
+      <button>asdf</button>
+    </div>
   )
 }
 
