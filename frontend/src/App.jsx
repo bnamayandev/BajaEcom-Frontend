@@ -10,24 +10,53 @@ import Card from './components/Card'; // Ensure you have the correct import for 
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     // THIS IS A TEST USEEEFFECT TO TEST THE CART PLEASE DELETE AFTER
-    setCart(testData);
+    setProducts(testData);
   }, []);
 
-  function addToCart() {
+  useEffect(() => { // THIS IS A TEST USEEEFFECT TO TEST THE CART PLEASE DELETE AFTER
+    console.log(cart);
+  }, [cart]);
+
+  function addToCart(id) {
+    // sets count
     setCount(count + 1);
+
+    setCart((prevCart) => {
+      if(prevCart.find((item) => item.productId === id)) { // Finds the item in the cart and then adds to the count if it exists already
+        return prevCart.map((item) => 
+          item.productId === id ? { ...item, count: item.count + 1 } : item
+        );
+      }
+
+      // creates new cart item if it doesn't exist
+      return [...prevCart, 
+        { 
+          productId: products[id-1].id, 
+          productName: products[id-1].productName, 
+          price: products[id-1].price, 
+          count: 1 
+        }
+      ];
+    })
+    console.log(cart);
+  }
+
+  function productMapper() { // This function maps the products to the Card component
+    return products.map((item) => {
+      return (
+        <Card key={item.id} productId={item.id} card={item} addToCart={addToCart} />
+      );
+    });
   }
 
   function cartMapper() {
-    if (!cart || cart.length === 0) {
-      return <p>No items in cart</p>;
-    }
     return cart.map((item) => {
       return (
-        <Card key={item.id} card={item} />
+        <Cart key={item.productId} productId={item.productId} card={item} />
       );
     });
   }
@@ -39,16 +68,22 @@ function App() {
         <Routes>
           <Route path="/" 
             element={<Home 
-              addToCart={addToCart} 
               count={count}
-              cart={cart}
-              cartMapper={cartMapper}
+              product={products}
+              productMapper={productMapper}
+              
             />} 
           />
           <Route path="/account" element={<Account />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route 
+            path="/cart" 
+            element={
+              <Cart
+                cartMapper={cartMapper}
+              />
+            } 
+          />
         </Routes>
-        
       </BrowserRouter>
     </>
   );

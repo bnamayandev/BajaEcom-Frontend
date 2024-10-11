@@ -1,12 +1,13 @@
 import React from 'react'
 
-const Cart = () => {
+const CartPage = ({ cartMapper }) => {
   return (
     <div>
         <div>Cart</div>
+        {cartMapper()}
         <button>asdf</button>
     </div>
   )
 }
 
-export default Cart
+export default CartPage

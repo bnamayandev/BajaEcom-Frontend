@@ -6,7 +6,7 @@ const Navbar = ({count}) => {
   return (
     <div>
         <nav>
-            <img src={logo} alt="" />
+            <Link to="https://www.westernbaja.com"><img src={logo} alt="" /></Link>
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><a href="">Contact Us</a></li>
