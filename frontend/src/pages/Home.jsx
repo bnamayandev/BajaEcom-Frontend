@@ -1,8 +1,17 @@
 import React from 'react'
-
-const Home = () => {
+import './Home.css'
+import Card from '../components/Card'
+const Home = ({ product, productMapper}) => {
   return (
-    <div>Home</div>
+    <div>
+      <div className='home'>
+        <h1>Official Western Baja Merch Store</h1>
+      </div>
+      <div className='cardSec'>
+        {productMapper()}
+      </div>
+
+    </div>
   )
 }
 

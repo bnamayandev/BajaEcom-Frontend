@@ -1,0 +1,7 @@
+.pCard {
+    padding: 30px;
+}
+
+.pCard > img {
+    width: 400px;
+}
