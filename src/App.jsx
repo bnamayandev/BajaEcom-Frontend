@@ -7,6 +7,7 @@ import Cart from './pages/Cart';
 import { testData } from './test';
 import './App.css';
 import Card from './components/Card'; // Ensure you have the correct import for Card component
+import OrderDashboard from './components/OrderDashboard';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -37,18 +38,19 @@ function App() {
       <BrowserRouter>
         <Navbar count={count} />
         <Routes>
-          <Route path="/" 
-            element={<Home 
-              addToCart={addToCart} 
+          <Route path="/"
+            element={<Home
+              addToCart={addToCart}
               count={count}
               cart={cart}
               cartMapper={cartMapper}
-            />} 
+            />}
           />
           <Route path="/account" element={<Account />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/orderdashboard" element={<OrderDashboard />} />
         </Routes>
-        
+
       </BrowserRouter>
     </>
   );
