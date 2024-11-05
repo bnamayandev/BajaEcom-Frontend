@@ -1,0 +1,20 @@
+.blue {
+    color: #ffaf00;
+}
+.item-container {
+    border: 3px solid black;
+    margin-left: 5px;
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-right: 35px;
+    padding-bottom: 5px;
+}
+.title {
+    font-size: 30px;
+    font-family: cursive;
+}
+.row {
+    display: 'flex';
+    gap: '20px';
+    /* marginBottom: '20px'; */
+}
