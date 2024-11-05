@@ -3,10 +3,6 @@ import './InventoryViewer.css'
 
 var text = "Hello there"
 
-// switch branches to dev.
-// Feature-NameOfFeature
-
-// [{"item_id":2,"clothing_type":"T-shirt","size":"S","quantity_available":50,"price":"0.00"},{"item_id":3,"clothing_type":"T-shirt","size":"M","quantity_available":50,"price":"0.00"},{"item_id":4,"clothing_type":"T-shirt","size":"L","quantity_available":50,"price":"0.00"}]
 
 const InventoryViewer = () => {
 
@@ -17,7 +13,7 @@ const InventoryViewer = () => {
 
   // Main
 
-  // Test JSON
+  // Test JSON (to be grabbed from database later)
   const json = [
     {"item_id":1,"clothing_type":"T-shirt","size":"S","quantity_available":10,"price":"3.00"},
     {"item_id":2,"clothing_type":"T-shirt","size":"M","quantity_available":20,"price":"4.00"},
