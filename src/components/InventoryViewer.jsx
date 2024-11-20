@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { getInventory } from "../api/inventory";
 import './InventoryViewer.css'
 
 var text = "Hello there"
@@ -12,38 +13,58 @@ const InventoryViewer = () => {
   )
 
   // Main
+  const [inventory, setInventory] = useState([]);
+  const [error, setError] = useState("");
+  
+  useEffect(() => {
 
-  // Test JSON (to be grabbed from database later)
-  const json = [
-    {"item_id":1,"clothing_type":"T-shirt","size":"S","quantity_available":10,"price":"3.00"},
-    {"item_id":2,"clothing_type":"T-shirt","size":"M","quantity_available":20,"price":"4.00"},
-    {"item_id":3,"clothing_type":"T-shirt","size":"L","quantity_available":30,"price":"5.00"},
-    {"item_id":4,"clothing_type":"Pants","size":"S","quantity_available":40,"price":"2.00"},
-    {"item_id":5,"clothing_type":"Pants","size":"M","quantity_available":50,"price":"3.00"},
-    {"item_id":6,"clothing_type":"Pants","size":"L","quantity_available":60,"price":"4.00"},
-    {"item_id":7,"clothing_type":"Pants","size":"XL","quantity_available":15,"price":"7.00"},
-    {"item_id":8,"clothing_type":"Hoodie","size":"S","quantity_available":15,"price":"9.00"},
-    {"item_id":9,"clothing_type":"Hoodie","size":"M","quantity_available":25,"price":"10.00"},
-    {"item_id":10,"clothing_type":"Hoodie","size":"L","quantity_available":35,"price":"11.00"},
-    {"item_id":11,"clothing_type":"T-shirt 2","size":"S","quantity_available":10,"price":"3.00"},
-    {"item_id":12,"clothing_type":"T-shirt 2","size":"M","quantity_available":20,"price":"4.00"},
-    {"item_id":13,"clothing_type":"T-shirt 2","size":"L","quantity_available":30,"price":"5.00"},
-    {"item_id":14,"clothing_type":"Pants 2","size":"S","quantity_available":40,"price":"2.00"},
-    {"item_id":15,"clothing_type":"Pants 2","size":"M","quantity_available":50,"price":"3.00"},
-    {"item_id":16,"clothing_type":"Pants 2","size":"L","quantity_available":60,"price":"4.00"},
-    {"item_id":17,"clothing_type":"Pants 2","size":"XL","quantity_available":15,"price":"7.00"},
-    {"item_id":18,"clothing_type":"Hoodie 2","size":"S","quantity_available":15,"price":"9.00"},
-    {"item_id":19,"clothing_type":"Hoodie 2","size":"M","quantity_available":25,"price":"10.00"},
-    {"item_id":20,"clothing_type":"Hoodie 2","size":"L","quantity_available":35,"price":"11.00"},
-  ]
+    const fetchInventory = async () => {
+        try {
+            const response = await getInventory();
+            setInventory(response.data);
+        } catch (error) {
+            setError("Failed to fetch orders");
+            console.error("Error Fetching Orders: ", error);
+        }
+    };
+
+    fetchInventory();
+}, []);
+
+const json = inventory;
+console.log(json);
+
+  // Debug Inventory, if necessary
+  // const json = [
+  //   {"item_id":1,"clothing_type":"T-shirt","size":"S","quantity_available":10,"price":"3.00"},
+  //   {"item_id":2,"clothing_type":"T-shirt","size":"M","quantity_available":20,"price":"4.00"},
+  //   {"item_id":3,"clothing_type":"T-shirt","size":"L","quantity_available":30,"price":"5.00"},
+  //   {"item_id":4,"clothing_type":"Pants","size":"S","quantity_available":40,"price":"2.00"},
+  //   {"item_id":5,"clothing_type":"Pants","size":"M","quantity_available":50,"price":"3.00"},
+  //   {"item_id":6,"clothing_type":"Pants","size":"L","quantity_available":60,"price":"4.00"},
+  //   {"item_id":7,"clothing_type":"Pants","size":"XL","quantity_available":15,"price":"7.00"},
+  //   {"item_id":8,"clothing_type":"Hoodie","size":"S","quantity_available":15,"price":"9.00"},
+  //   {"item_id":9,"clothing_type":"Hoodie","size":"M","quantity_available":25,"price":"10.00"},
+  //   {"item_id":10,"clothing_type":"Hoodie","size":"L","quantity_available":35,"price":"11.00"},
+  //   {"item_id":11,"clothing_type":"T-shirt 2","size":"S","quantity_available":10,"price":"3.00"},
+  //   {"item_id":12,"clothing_type":"T-shirt 2","size":"M","quantity_available":20,"price":"4.00"},
+  //   {"item_id":13,"clothing_type":"T-shirt 2","size":"L","quantity_available":30,"price":"5.00"},
+  //   {"item_id":14,"clothing_type":"Pants 2","size":"S","quantity_available":40,"price":"2.00"},
+  //   {"item_id":15,"clothing_type":"Pants 2","size":"M","quantity_available":50,"price":"3.00"},
+  //   {"item_id":16,"clothing_type":"Pants 2","size":"L","quantity_available":60,"price":"4.00"},
+  //   {"item_id":17,"clothing_type":"Pants 2","size":"XL","quantity_available":15,"price":"7.00"},
+  //   {"item_id":18,"clothing_type":"Hoodie 2","size":"S","quantity_available":15,"price":"9.00"},
+  //   {"item_id":19,"clothing_type":"Hoodie 2","size":"M","quantity_available":25,"price":"10.00"},
+  //   {"item_id":20,"clothing_type":"Hoodie 2","size":"L","quantity_available":35,"price":"11.00"},
+  // ]
 
   // Split JSON into rows
   const split_json = (json) => {
     const split = []
-    var COLUMNS = 5
+    var COLUMNS = 4
 
     for(var i = 0; i < json.length; i += COLUMNS) {
-      split.push(json.slice(i,i+COLUMNS)) // JS automatically throws OOB on slice
+      split.push(json.slice(i,i+COLUMNS)) // JS automatically throws any OOB on slice
     }
     return split;
   }
@@ -59,22 +80,23 @@ const InventoryViewer = () => {
 // Divide into rows
 return (
   <div>
-    <h1 className="title" style={{paddingLeft: '20px', paddingTop: '20px'}}>Title of Page</h1>
     <br/>
     {rows.map((row, row_index) => (
       
-        <div key={row_index} style={{display: 'flex', gap: '30px', marginBottom: '30px' }}>
+        <div key={row_index} className="row">
           
           {/* Create each item */}
           {row.map(item => (
           <ul key={item.item_id} className="item-container">
+          <p className="item-name">Name of Item</p>
+          <img src={img_url} alt="Duck." width={200}/>
           <p>Item ID: {item.item_id}</p> 
-          <img src={img_url} alt="Duck." width={100}/>
           <p>Type: {item.clothing_type}</p>
           <p>Size: {item.size}</p>
           <p>Quantity Left: {item.quantity_available}</p>
           <p>Price: {item.price}</p>
-          <button onClick = {() => redirect(item.item_id)}>Buy now!</button>
+          <br/>
+          <button className="button" onClick = {() => redirect(item.item_id)}>Purchase!</button>
           <br/>
           </ul>
           
