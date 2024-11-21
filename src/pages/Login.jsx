@@ -18,7 +18,7 @@ function Login({ onLogin }) {
             });
 
             // Store JWT in localStorage
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('authToken', response.data.token);
 
             // Call the onLogin prop to notify parent component
             onLogin(response.data.token);
