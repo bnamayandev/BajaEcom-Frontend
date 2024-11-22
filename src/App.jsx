@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Account from './pages/Account';
+import Account from './pages/Account'; // Ensure this path is correct
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -88,23 +88,12 @@ function App() {
   return (
     <div>
       <Navbar count={count} />
-      <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-        {token ? (
-          <button onClick={handleLogout}>Logout</button>
-        ) : (
-          <div>
-            <button onClick={() => navigate('/login')}>Login</button>
-            <button onClick={() => navigate('/signup')}>Signup</button>
-          </div>
-        )}
-        <button onClick={goToMembersView}>Members' View</button>
-      </div>
       <Routes>
         <Route
           path="/"
           element={<Home addToCart={addToCart} count={count} cart={cart} cartMapper={cartMapper} />}
         />
-        <Route path="/account" element={<Account />} />
+        <Route path="/account" element={<Account handleLogout={handleLogout} goToMembersView={goToMembersView} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderdashboard" element={token ? <OrderDashboard /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
