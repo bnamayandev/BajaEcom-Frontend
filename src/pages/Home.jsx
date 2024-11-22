@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css'
 import Card from '../components/Card'
+import InventoryViewer from '../components/InventoryViewer'
 const Home = ({addToCart, cart, cartMapper}) => {
   return (
     <div>
@@ -9,6 +10,7 @@ const Home = ({addToCart, cart, cartMapper}) => {
       </div>
       <div className='cardSec'>
         {cartMapper()}
+        {InventoryViewer()}
       </div>
 
     </div>
