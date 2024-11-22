@@ -10,7 +10,7 @@ const Navbar = ({count}) => {
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><a href="">Contact Us</a></li>
-                <li><a href="">Account</a></li>
+                <li><Link to="/account">Account</Link></li>
                 <li><Link to="/cart">Cart ({count})</Link></li>
             </ul>
         </nav>
