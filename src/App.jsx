@@ -10,7 +10,6 @@ import { testData } from './test';
 import './App.css';
 import Card from './components/Card';
 import OrderDashboard from './components/OrderDashboard';
-import OrderConfirmedPage from './pages/OrderConfirmedPage';
 
 function ProtectedOrderDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -109,7 +108,6 @@ function App() {
         <Route path="/orderdashboard" element={token ? <OrderDashboard /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
       </Routes>
     </div>
   );
