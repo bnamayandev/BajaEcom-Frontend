@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -6,9 +6,8 @@ import Account from './pages/Account'; // Ensure this path is correct
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { testData } from './test';
+import { CartProvider } from './api/CartContext'; // Import Cart Context Provider
 import './App.css';
-import Card from './components/Card';
 import OrderDashboard from './components/OrderDashboard';
 import OrderConfirmedPage from './pages/OrderConfirmedPage';
 
@@ -50,14 +49,8 @@ function ProtectedOrderDashboard() {
 }
 
 function App() {
-  const [cart, setCart] = useState([]);
-  const [count, setCount] = useState(0);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setCart(testData);
-  }, []);
 
   const handleLogin = (newToken) => {
     setToken(newToken);
@@ -70,37 +63,25 @@ function App() {
     navigate('/');
   };
 
-  function addToCart() {
-    setCount(count + 1);
-  }
-
-  function cartMapper() {
-    if (!cart || cart.length === 0) {
-      return <p>No items in cart</p>;
-    }
-    return cart.map((item) => <Card key={item.id} card={item} />);
-  }
-
   const goToMembersView = () => {
     navigate('/orderdashboard');
   };
 
   return (
-    <div>
-      <Navbar count={count} />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home addToCart={addToCart} count={count} cart={cart} cartMapper={cartMapper} />}
-        />
-        <Route path="/account" element={<Account handleLogout={handleLogout} goToMembersView={goToMembersView} />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/orderdashboard" element={token ? <OrderDashboard /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
-      </Routes>
-    </div>
+    <CartProvider>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/account" element={<Account handleLogout={handleLogout} goToMembersView={goToMembersView} />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/orderdashboard" element={token ? <OrderDashboard /> : <Navigate to="/login" />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
+        </Routes>
+      </div>
+    </CartProvider>
   );
 }
 
