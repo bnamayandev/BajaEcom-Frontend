@@ -73,12 +73,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/account" element={<Account handleLogout={handleLogout} goToMembersView={goToMembersView} />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/orderdashboard" element={token ? <OrderDashboard /> : <Navigate to="/login" />} />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
         </Routes>
       </div>
     </CartProvider>
