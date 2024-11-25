@@ -6,7 +6,6 @@ import Account from './pages/Account'; // Ensure this path is correct
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { testData } from './test';
 import './App.css';
 import Card from './components/Card';
 import OrderDashboard from './components/OrderDashboard';
