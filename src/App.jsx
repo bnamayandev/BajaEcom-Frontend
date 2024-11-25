@@ -52,11 +52,12 @@ function ProtectedOrderDashboard() {
 function App() {
   const [cart, setCart] = useState([]);
   const [count, setCount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCart(testData);
+    setCart([]);
   }, []);
 
   const handleLogin = (newToken) => {
@@ -70,7 +71,14 @@ function App() {
     navigate('/');
   };
 
-  function addToCart() {
+  function addToCart(id, price) {
+    setCart([...cart, {"id": id,
+      "productName": "Product " + id,
+      "productDescription": "This is a description of New product",
+      "price": price}]);
+    
+    
+    setTotalPrice(totalPrice + Number(price));
     setCount(count + 1);
   }
 
@@ -78,7 +86,15 @@ function App() {
     if (!cart || cart.length === 0) {
       return <p>No items in cart</p>;
     }
-    return cart.map((item) => <Card key={item.id} card={item} />);
+    return (
+      <div>
+      {cart.map((item) => <Card key={item.id} card={item} />)}
+      
+      <hr></hr>
+      <br/>
+      <h3>Total: {totalPrice.toFixed(2)}</h3>
+      </div>
+    );
   }
 
   const goToMembersView = () => {
@@ -94,7 +110,7 @@ function App() {
           element={<Home addToCart={addToCart} count={count} cart={cart} cartMapper={cartMapper} />}
         />
         <Route path="/account" element={<Account handleLogout={handleLogout} goToMembersView={goToMembersView} />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart cart={cart} cartMapper={cartMapper}/>} />
         <Route path="/orderdashboard" element={token ? <OrderDashboard /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
