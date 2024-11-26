@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:13000';
 
 const getAuthToken = () => {
-    return localStorage.getItem('authToken') || import.meta.env.VITE_DEV_TOKEN;
+    return localStorage.getItem('authToken');
 };
 
 // Grab from inventory
