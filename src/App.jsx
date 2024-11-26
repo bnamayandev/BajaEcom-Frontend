@@ -10,6 +10,7 @@ import './App.css';
 import OrderDashboard from './components/OrderDashboard';
 import OrderConfirmedPage from './pages/OrderConfirmedPage';
 import { createOrder } from './api/orders';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -77,7 +78,7 @@ function App() {
   }
 
   // Function to place an order
-  const placeOrder = async () => {
+  const placeOrder = async (pickupDateTime) => {
     try {
       if (!token) {
         alert('Please login to place an order.');
@@ -85,21 +86,19 @@ function App() {
         return;
       }
 
-      // Prompt user for pickup date and time
-      const pickupDateInput = prompt('Enter pickup date and time (YYYY-MM-DD HH:MM):');
-      if (!pickupDateInput) {
+      if (!pickupDateTime) {
         alert('Pickup date and time is required.');
         return;
       }
-      const pickup_date_time = new Date(pickupDateInput);
-      if (isNaN(pickup_date_time.getTime())) {
-        alert('Invalid date format.');
+
+      // Ensure the date is valid and in the future
+      if (pickupDateTime < new Date()) {
+        alert('Pickup date and time must be in the future.');
         return;
       }
 
       const orderData = {
-        // user_id is no longer needed here
-        pickup_date_time,
+        pickup_date_time: pickupDateTime.toISOString(),
         items: cart.map((item) => ({
           item_id: item.item_id,
           quantity: item.quantity,
