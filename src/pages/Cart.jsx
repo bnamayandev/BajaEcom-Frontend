@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-const Cart = ({cart, cartMapper}) => {
+const Cart = ({ cart, cartMapper, placeOrder }) => {
   return (
     <div>
-        <div>Cart</div>
-        <div>{cartMapper()}</div>
-        <button>asdf</button>
+      <h2>Cart</h2>
+      {cartMapper()}
+      <button onClick={placeOrder}>Place Order</button>
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

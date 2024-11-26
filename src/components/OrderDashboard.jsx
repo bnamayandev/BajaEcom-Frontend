@@ -1,7 +1,5 @@
-// src/components/OrderDashboard.jsx
-
 import React, { useState, useEffect } from 'react';
-import { getSales, toggleFulfillmentStatus } from '../api/sales';
+import { getOrders, toggleFulfillmentStatus } from '../api/orders';
 import './OrderDashboard.css';
 
 const OrderDashboard = () => {
@@ -19,7 +17,7 @@ const OrderDashboard = () => {
 
     const fetchOrders = async () => {
         try {
-            const response = await getSales();
+            const response = await getOrders();
             setOrders(response.data);
             calculateTotals(response.data); // Calculate totals after fetching orders
         } catch (error) {
@@ -65,7 +63,7 @@ const OrderDashboard = () => {
 
             // Optimistically update the orders state
             const updatedOrders = orders.map((order) =>
-                order.sale_id === orderId
+                order.order_id === orderId
                     ? {
                         ...order,
                         status: order.status === 'fulfilled' ? 'not fulfilled' : 'fulfilled',
@@ -115,32 +113,36 @@ const OrderDashboard = () => {
                         <tr>
                             <th>Order ID</th>
                             <th>User ID</th>
-                            <th>Item ID</th>
-                            <th>Quantity</th>
-                            <th>Size</th>
                             <th>Order Total</th>
                             <th>Pickup Date</th>
                             <th>Status</th>
                             <th>Staff Signoff</th>
+                            <th>Items</th>
                         </tr>
                     </thead>
                     <tbody>
                         {orders.map((order) => (
-                            <tr key={order.sale_id}>
-                                <td>{order.sale_id}</td>
+                            <tr key={order.order_id}>
+                                <td>{order.order_id}</td>
                                 <td>{order.user_id}</td>
-                                <td>{order.item_id}</td>
-                                <td>{order.order_quantity}</td>
-                                <td>{order.order_size}</td>
                                 <td>${Number(order.order_total || 0).toFixed(2)}</td>
                                 <td>{new Date(order.pickup_date_time).toLocaleString()}</td>
                                 <td
                                     className={`status-cell ${order.status === 'fulfilled' ? 'fulfilled' : 'not-fulfilled'}`}
-                                    onClick={() => handleStatusClick(order.sale_id, order.status)}
+                                    onClick={() => handleStatusClick(order.order_id, order.status)}
                                 >
                                     {order.status}
                                 </td>
                                 <td>{order.staff_signoff || 'N/A'}</td>
+                                <td>
+                                    <ul>
+                                        {order.items.map((item) => (
+                                            <li key={item.order_item_id}>
+                                                {item.quantity} x {item.clothing_type} ({item.size}) - ${item.total_price.toFixed(2)}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
