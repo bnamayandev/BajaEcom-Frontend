@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Cart = () => {
+const Cart = ({cart, cartMapper}) => {
   return (
     <div>
         <div>Cart</div>
+        <div>{cartMapper()}</div>
         <button>asdf</button>
     </div>
   )

@@ -5,11 +5,11 @@ import './InventoryViewer.css'
 var text = "Hello there"
 
 
-const InventoryViewer = () => {
+const InventoryViewer = ({addToCart, cart}) => {
 
   
-  const redirect = (id) => (
-    alert("This doesn't work yet. Go to ID #" + id)
+  const addItem = (id, price) => (
+    addToCart(id, price)
   )
 
   // Main
@@ -32,14 +32,14 @@ const InventoryViewer = () => {
 }, []);
 
 const json = inventory;
-console.log(json);
 
   // Debug Inventory, if necessary
+  
   // const json = [
-  //   {"item_id":1,"clothing_type":"T-shirt","size":"S","quantity_available":10,"price":"3.00"},
-  //   {"item_id":2,"clothing_type":"T-shirt","size":"M","quantity_available":20,"price":"4.00"},
-  //   {"item_id":3,"clothing_type":"T-shirt","size":"L","quantity_available":30,"price":"5.00"},
-  //   {"item_id":4,"clothing_type":"Pants","size":"S","quantity_available":40,"price":"2.00"},
+  //   {"item_id":1,"clothing_type":"T-shirt","size":"S","quantity_available":10,"price":"0.99"},
+  //   {"item_id":2,"clothing_type":"T-shirt","size":"M","quantity_available":20,"price":"4.32"},
+  //   {"item_id":3,"clothing_type":"T-shirt","size":"L","quantity_available":30,"price":"5.12"},
+  //   {"item_id":4,"clothing_type":"Pants","size":"S","quantity_available":40,"price":"2.07"},
   //   {"item_id":5,"clothing_type":"Pants","size":"M","quantity_available":50,"price":"3.00"},
   //   {"item_id":6,"clothing_type":"Pants","size":"L","quantity_available":60,"price":"4.00"},
   //   {"item_id":7,"clothing_type":"Pants","size":"XL","quantity_available":15,"price":"7.00"},
@@ -96,7 +96,7 @@ return (
           <p>Quantity Left: {item.quantity_available}</p>
           <p>Price: {item.price}</p>
           <br/>
-          <button className="button" onClick = {() => redirect(item.item_id)}>Purchase!</button>
+          <button className="button" onClick = {() => addItem(item.item_id, item.price)}>Purchase!</button>
           <br/>
           </ul>
           
