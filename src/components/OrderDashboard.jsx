@@ -136,11 +136,17 @@ const OrderDashboard = () => {
                                 <td>{order.staff_signoff || 'N/A'}</td>
                                 <td>
                                     <ul>
-                                        {order.items.map((item) => (
-                                            <li key={item.order_item_id}>
-                                                {item.quantity} x {item.clothing_type} ({item.size}) - ${item.total_price.toFixed(2)}
-                                            </li>
-                                        ))}
+                                        {Array.isArray(order.items) && order.items.length > 0 ? (
+                                            order.items.map((item) => (
+                                                <li key={item.order_item_id}>
+                                                    {item.quantity} x {item.clothing_type} ({item.size}) - ${
+                                                        item.total_price ? Number(item.total_price).toFixed(2) : '0.00'
+                                                    }
+                                                </li>
+                                            ))
+                                        ) : (
+                                            <li>No items available</li>
+                                        )}
                                     </ul>
                                 </td>
                             </tr>
