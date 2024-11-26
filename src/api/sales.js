@@ -33,11 +33,12 @@ export const getSaleById = async (id) => {
     });
 };
 
-export const fulfillSale = async (id, staffSignoff) => {
+export const toggleFulfillmentStatus = async (id) => {
     const token = getAuthToken();
-    return axios.put(`${API_URL}/sales/${id}/fulfill`, { staff_signoff: staffSignoff }, {
+    return axios.put(`${API_URL}/sales/${id}/toggle-fulfillment`, {}, {
         headers: {
             Authorization: `Bearer ${token}`,
         }
     });
 };
+

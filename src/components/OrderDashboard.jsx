@@ -1,6 +1,6 @@
 // src/components/OrderDashboard.jsx
 import React, { useState, useEffect } from "react";
-import { getSales } from "../api/sales";
+import { getSales, toggleFulfillmentStatus } from "../api/sales"; // Import the new function
 import "./OrderDashboard.css";
 
 const OrderDashboard = () => {
@@ -8,18 +8,38 @@ const OrderDashboard = () => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await getSales();
-                setOrders(response.data);
-            } catch (error) {
-                setError("Failed to fetch orders");
-                console.error("Error Fetching Orders: ", error);
-            }
-        };
-
         fetchOrders();
     }, []);
+
+    const fetchOrders = async () => {
+        try {
+            const response = await getSales();
+            setOrders(response.data);
+        } catch (error) {
+            setError("Failed to fetch orders");
+            console.error("Error Fetching Orders: ", error);
+        }
+    };
+
+    const handleStatusClick = async (orderId) => {
+        try {
+            // Optimistically update the status in the UI
+            setOrders((prevOrders) =>
+                prevOrders.map((order) =>
+                    order.sale_id === orderId
+                        ? { ...order, status: order.status === 'fulfilled' ? 'not fulfilled' : 'fulfilled' }
+                        : order
+                )
+            );
+
+            // Call the API to toggle status
+            await toggleFulfillmentStatus(orderId);
+        } catch (error) {
+            //console.error("Error toggling order status:", error);
+            // Optionally, revert the optimistic update in case of error
+            fetchOrders();
+        }
+    };
 
     return (
         <div>
@@ -49,7 +69,13 @@ const OrderDashboard = () => {
                                 <td>{order.order_size}</td>
                                 <td>${Number(order.order_total || 0).toFixed(2)}</td>
                                 <td>{new Date(order.pickup_date_time).toLocaleString()}</td>
-                                <td>{order.status}</td>
+                                <td
+                                    className="status-cell"
+                                    onClick={() => handleStatusClick(order.sale_id)}
+                                    style={{ cursor: 'pointer', color: order.status === 'fulfilled' ? 'green' : 'red' }}
+                                >
+                                    {order.status}
+                                </td>
                                 <td>{order.staff_signoff || 'N/A'}</td>
                             </tr>
                         ))}
@@ -63,3 +89,4 @@ const OrderDashboard = () => {
 };
 
 export default OrderDashboard;
+
