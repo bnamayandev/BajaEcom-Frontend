@@ -20,4 +20,4 @@ const OrderConfirmedPage = () => {
     )
 }
 
-export default OrderConfirmedPage
+export default OrderConfirmedPage;
