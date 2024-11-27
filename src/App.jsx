@@ -50,6 +50,7 @@ function App() {
     } else {
       setCart([...cart, item]);
     }
+
     // Update total price and count
     setTotalPrice(totalPrice + item.price * item.quantity);
     setCount(count + item.quantity);
@@ -162,7 +163,6 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
-        <Route path="/signupconfirmed" element={<SignupConfirmed />} />
       </Routes>
     </div>
   );
