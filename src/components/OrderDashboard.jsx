@@ -1,3 +1,5 @@
+// src/components/OrderDashboard.jsx
+
 import React, { useState, useEffect } from 'react';
 import { getOrders, toggleFulfillmentStatus } from '../api/orders';
 import './OrderDashboard.css';
@@ -112,7 +114,7 @@ const OrderDashboard = () => {
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>User ID</th>
+                            <th>User Info</th>
                             <th>Order Total</th>
                             <th>Pickup Date</th>
                             <th>Status</th>
@@ -124,7 +126,11 @@ const OrderDashboard = () => {
                         {orders.map((order) => (
                             <tr key={order.order_id}>
                                 <td>{order.order_id}</td>
-                                <td>{order.user_id}</td>
+                                <td>
+                                    {order.first_name} {order.last_name}
+                                    <br />
+                                    {order.email}
+                                </td>
                                 <td>${Number(order.order_total || 0).toFixed(2)}</td>
                                 <td>{new Date(order.pickup_date_time).toLocaleString()}</td>
                                 <td
@@ -139,9 +145,8 @@ const OrderDashboard = () => {
                                         {Array.isArray(order.items) && order.items.length > 0 ? (
                                             order.items.map((item) => (
                                                 <li key={item.order_item_id}>
-                                                    {item.quantity} x {item.clothing_type} ({item.size}) - ${
-                                                        item.total_price ? Number(item.total_price).toFixed(2) : '0.00'
-                                                    }
+                                                    {item.quantity} x {item.clothing_type} ({item.size}) - $
+                                                    {item.total_price ? Number(item.total_price).toFixed(2) : '0.00'}
                                                 </li>
                                             ))
                                         ) : (
