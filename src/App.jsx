@@ -11,6 +11,7 @@ import OrderDashboard from './components/OrderDashboard';
 import OrderConfirmedPage from './pages/OrderConfirmedPage';
 import { createOrder } from './api/orders';
 import 'react-datepicker/dist/react-datepicker.css';
+import SignupConfirmed from './pages/SignupConfirmed';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -161,6 +162,7 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
+        <Route path="/signupconfirmed" element={<SignupConfirmed />} />
       </Routes>
     </div>
   );
