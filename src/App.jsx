@@ -104,7 +104,6 @@ function App() {
         items: cart.map((item) => ({
           item_id: item.item_id,
           quantity: item.quantity,
-          size: item.size,
         })),
       };
 

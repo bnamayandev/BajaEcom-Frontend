@@ -21,12 +21,24 @@ const InventoryViewer = ({ addToCart }) => {
     fetchInventory();
   }, []);
 
-  const handleSizeSelect = (item, size) => {
-    setSelectedSize({ ...selectedSize, [item.clothing_type]: size });
+  const handleSizeSelect = (item, sizeInfo) => {
+    setSelectedSize({ ...selectedSize, [item.clothing_type]: sizeInfo });
+    // Reset quantity to 1 when size changes
+    setSelectedQuantity({ ...selectedQuantity, [item.clothing_type]: 1 });
   };
 
   const handleQuantityChange = (item, value) => {
-    setSelectedQuantity({ ...selectedQuantity, [item.clothing_type]: parseInt(value) });
+    const maxQuantity = selectedSize[item.clothing_type]?.quantity_available || 1;
+    let quantity = parseInt(value);
+
+    // Ensure quantity does not exceed available stock
+    if (quantity > maxQuantity) {
+      quantity = maxQuantity;
+    } else if (quantity < 1 || isNaN(quantity)) {
+      quantity = 1;
+    }
+
+    setSelectedQuantity({ ...selectedQuantity, [item.clothing_type]: quantity });
   };
 
   const handleAddToCart = (item) => {
@@ -65,10 +77,10 @@ const InventoryViewer = ({ addToCart }) => {
               <p>Select Size:</p>
               {item.sizes.map((sizeInfo) => (
                 <button
-                  key={sizeInfo.size}
-                  className={`size-button ${selectedSize[item.clothing_type]?.size === sizeInfo.size ? 'selected' : ''
-                    }`}
+                  key={sizeInfo.item_id}
+                  className={`size-button ${selectedSize[item.clothing_type]?.item_id === sizeInfo.item_id ? 'selected' : ''} ${sizeInfo.quantity_available === 0 ? 'sold-out' : ''}`}
                   onClick={() => handleSizeSelect(item, sizeInfo)}
+                  disabled={sizeInfo.quantity_available === 0}
                 >
                   {sizeInfo.size}
                 </button>
@@ -85,6 +97,7 @@ const InventoryViewer = ({ addToCart }) => {
                 }
                 value={selectedQuantity[item.clothing_type] || 1}
                 onChange={(e) => handleQuantityChange(item, e.target.value)}
+                disabled={!selectedSize[item.clothing_type]}
               />
             </label>
 
