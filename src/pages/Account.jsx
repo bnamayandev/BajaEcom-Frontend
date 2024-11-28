@@ -22,5 +22,5 @@ const Account = ({ handleLogout, goToMembersView, token }) => {
   )
 }
 
-export default Account
+export default Account;
 

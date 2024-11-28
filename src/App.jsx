@@ -11,6 +11,7 @@ import OrderDashboard from './components/OrderDashboard';
 import OrderConfirmedPage from './pages/OrderConfirmedPage';
 import { createOrder } from './api/orders';
 import 'react-datepicker/dist/react-datepicker.css';
+import SignupConfirmed from './pages/SignupConfirmed';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -49,6 +50,7 @@ function App() {
     } else {
       setCart([...cart, item]);
     }
+
     // Update total price and count
     setTotalPrice(totalPrice + item.price * item.quantity);
     setCount(count + item.quantity);
@@ -102,7 +104,6 @@ function App() {
         items: cart.map((item) => ({
           item_id: item.item_id,
           quantity: item.quantity,
-          size: item.size,
         })),
       };
 

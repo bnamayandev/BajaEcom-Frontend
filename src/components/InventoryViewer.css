@@ -1,42 +1,51 @@
-.blue {
-    color: #ffaf00;
-}
-.item-container {
-    border: 3px solid black;
-    margin: 15px 15px;
-    padding: 5px 50px;
-    border-radius: 12px;
-    
-    text-align: center;
-}
-.title {
-    font-size: 30px;
-    font-family: cursive;
-}
-.row {
+.inventory-grid {
     display: flex;
-    gap: 30px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;            /* Wrap items to the next row if needed */
-    justify-content: center;    /* Center items horizontally */
-    align-items: center;        /* Center items vertically */
+    flex-wrap: wrap;
+    gap: 20px;
 }
-.button {
-    background-color: #33b8ca; /* Green */
+
+.item-container {
+    border: 1px solid #ccc;
+    padding: 16px;
+    width: 250px;
+}
+
+.size-selection {
+    margin: 10px 0;
+}
+
+.size-button {
+    margin: 5px;
+    padding: 8px 12px;
+    background-color: #f0f0f0;
     border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
-  }
-.button:hover {
-    background-color: #2a8bac
+    cursor: pointer;
 }
-.item-name {
-    font-size: 22px;
-    font-family: 'Trebuchet MS';
-    padding: 8px 5px;
+
+.size-button.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.size-button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+.error {
+    color: red;
 }

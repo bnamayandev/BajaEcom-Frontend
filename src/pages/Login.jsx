@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login({ onLogin }) {
-    const [username, setUsername] = useState('');
+    const [emailOrUsername, setEmailOrUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ function Login({ onLogin }) {
 
         try {
             const response = await axios.post('http://localhost:13000/login', {
-                username,
+                email: emailOrUsername, // Adjusted to use email
                 password,
             });
 
@@ -26,7 +26,6 @@ function Login({ onLogin }) {
             // Redirect or show success message
             alert('Login successful!');
             navigate('/');
-
         } catch (err) {
             setError(err.response?.data?.error || 'Login failed');
         }
@@ -38,9 +37,9 @@ function Login({ onLogin }) {
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Email"
+                    value={emailOrUsername}
+                    onChange={(e) => setEmailOrUsername(e.target.value)}
                     required
                 />
                 <input
