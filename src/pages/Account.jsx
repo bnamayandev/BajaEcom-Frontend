@@ -16,7 +16,7 @@ const Account = ({ handleLogout, goToMembersView, token }) => {
             <button className="button secondary-button" onClick={() => navigate('/signup')}>Signup</button>
           </>
         )}
-        <button className="button primary-button" onClick={goToMembersView}>Members' View</button>
+        <button className="button primary-button" onClick={goToMembersView}>Staff View</button>
       </div>
     </div>
   )

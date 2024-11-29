@@ -10,6 +10,7 @@ function Signup() {
         last_name: '',
         phone_number: '',
         password: '',
+        confirm_password: ''
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -20,13 +21,19 @@ function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        if(formData.password === formData.confirm_password) {
+            try {
+                await axios.post('http://localhost:13000/signup', formData);
+                setError('');
+                navigate('/signupconfirmed'); // Redirect to confirmation page after signup
+            } catch (err) {
+                setError(err.response?.data?.error || 'Signup failed');
+            }
+        }
 
-        try {
-            await axios.post('http://localhost:13000/signup', formData);
-            setError('');
-            navigate('/signupconfirmed'); // Redirect to confirmation page after signup
-        } catch (err) {
-            setError(err.response?.data?.error || 'Signup failed');
+        else {
+            setError("Passwords do not match.");
         }
     };
 
@@ -40,6 +47,7 @@ function Signup() {
                 <input type='text' name='last_name' placeholder='Last Name' value={formData.last_name} onChange={handleChange} required />
                 <input type='text' name='phone_number' placeholder='Phone Number' value={formData.phone_number} onChange={handleChange} required />
                 <input type='password' name='password' placeholder='Password' value={formData.password} onChange={handleChange} required />
+                <input type='password' name='confirm_password' placeholder='Confirm Password' value={formData.confirm_password} onChange={handleChange} required />
 
                 <button type="submit">Sign Up</button>
             </form>

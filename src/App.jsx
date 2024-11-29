@@ -123,7 +123,13 @@ function App() {
   };
 
   const goToMembersView = () => {
-    navigate('/orderdashboard');
+    const passInput = prompt("Enter Password");
+    if(passInput === import.meta.env.VITE_MV_PASSWORD) {
+      navigate('/orderdashboard');
+    }
+    else {
+      alert("Invalid Password!");
+    }
   };
 
   return (
@@ -162,6 +168,7 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
+        <Route path="/signupconfirmed" element={<SignupConfirmed />} />
       </Routes>
     </div>
   );
