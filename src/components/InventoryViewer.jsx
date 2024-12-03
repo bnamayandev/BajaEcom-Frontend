@@ -60,9 +60,6 @@ const InventoryViewer = ({ addToCart }) => {
     });
   };
 
-  // Placeholder image URL
-  const img_url = "your_placeholder_image_url_here";
-
   return (
     <div>
       <br />
@@ -70,7 +67,8 @@ const InventoryViewer = ({ addToCart }) => {
         {inventory.map((item) => (
           <div key={item.clothing_type} className="item-container">
             <p className="item-name">{item.clothing_type}</p>
-            <img src={img_url} alt="Product Image" width={200} />
+            <img src={item.item_photo} alt="Product Image" width={200} />
+            <p>{item.description}</p>
             <p>Price: ${item.price}</p>
 
             <div className="size-selection">
