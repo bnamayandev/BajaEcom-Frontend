@@ -1,21 +1,31 @@
-import React from 'react'
-import logo from '/logo.png'
-import './Navbar.css'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import './Navbar.css';
+import { Link } from 'react-router-dom';
+
 const Navbar = ({ count }) => {
   return (
-    <div>
-      <nav>
-        <img src={logo} alt="" />
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><a href="">Contact Us</a></li>
-          <li><Link to="/account">Account</Link></li>
-          <li><Link to="/cart">Cart ({count})</Link></li>
-        </ul>
-      </nav>
-    </div>
+    <nav className="navbar">
+      <div className="logoContainer">
+        <img src="/logo.png" alt="Logo" className="logo" />
+      </div>
+      <ul className="navList">
+        <li className="navItem">
+          <Link to="/" className="navLink">Home</Link>
+        </li>
+        <li className="navItem">
+          <Link to="/contact" className="navLink">Contact Us</Link>
+        </li>
+        <li className="navItem">
+          <Link to="/account" className="navLink">Account</Link>
+        </li>
+        <li className="navItem">
+          <Link to="/cart" className="navLink cartLink">
+            Cart <span className="cartCount">{count}</span>
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
-}
+};
 
 export default Navbar;
