@@ -256,7 +256,7 @@ const OrderDashboard = () => {
                 <p>No pending or fulfilled orders available</p>
             )}
 
-            <h2>Orders Voided</h2>
+            <h2>Voided Orders</h2>
             {voidedOrders.length > 0 ? (
                 <table className="orders-table">
                     <thead>
@@ -287,7 +287,9 @@ const OrderDashboard = () => {
                                     <span className="status-cell voided">{order.status}</span>
                                 </td>
                                 <td>
-                                    {order.void_time ? new Date(order.void_time).toLocaleString() : 'N/A'}
+                                    {order.void_time
+                                        ? new Date(order.void_time).toLocaleString()
+                                        : 'N/A'}
                                 </td>
                                 <td>
                                     <ul className="items-list">

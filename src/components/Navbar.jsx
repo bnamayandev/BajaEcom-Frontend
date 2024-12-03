@@ -10,13 +10,19 @@ const Navbar = ({ count }) => {
       </div>
       <ul className="navList">
         <li className="navItem">
-          <Link to="/" className="navLink">Home</Link>
+          <Link to="/" className="navLink">
+            Home
+          </Link>
         </li>
         <li className="navItem">
-          <Link to="/contact" className="navLink">Contact Us</Link>
+          <Link to="/contact" className="navLink">
+            Contact Us
+          </Link>
         </li>
         <li className="navItem">
-          <Link to="/account" className="navLink">Account</Link>
+          <Link to="/account" className="navLink">
+            Account
+          </Link>
         </li>
         <li className="navItem">
           <Link to="/cart" className="navLink cartLink">
@@ -29,3 +35,4 @@ const Navbar = ({ count }) => {
 };
 
 export default Navbar;
+

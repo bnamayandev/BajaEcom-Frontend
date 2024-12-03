@@ -1,37 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/* Root variables for colors */
+:root {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #8338ec;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --secondary-color: #6c757d;
+    --border-color: #444444;
+}
 
+/* Dashboard container */
 .order-dashboard {
     padding: 20px;
     font-family: 'Roboto', sans-serif;
-    color: #333;
-    background-color: #f9f9f9;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Error Message Styling */
+/* Error message */
 .error {
-    color: #dc3545;
+    color: var(--danger-color);
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-/* Heading Styles */
+/* Headings */
 .order-dashboard h1 {
-    font-size: 2.5em;
-    color: #343a40;
+    font-size: 2.5rem;
+    color: var(--accent-color);
     margin-bottom: 30px;
     text-align: center;
+    animation: dropIn 0.8s ease-in-out;
 }
 
 .order-dashboard h2 {
-    font-size: 1.8em;
-    color: #343a40;
+    font-size: 1.8rem;
+    color: var(--text-color);
     margin-top: 40px;
     margin-bottom: 20px;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid var(--accent-color);
     display: inline-block;
+    animation: slideIn 0.8s ease-in-out;
 }
 
-/* Totals Container */
+/* Totals container */
 .totals-container {
     display: flex;
     flex-wrap: wrap;
@@ -40,61 +55,63 @@
 }
 
 .totals-card {
-    background: linear-gradient(135deg, #ffffff, #e6e6e6);
+    background: var(--background-color);
     padding: 25px;
     border-radius: 12px;
     text-align: center;
     flex: 1;
     margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 250px;
+    border: 2px solid var(--border-color);
+    animation: fadeIn 1s ease-in-out;
 }
 
 .totals-card h2 {
     margin: 0 0 15px 0;
-    font-size: 1.4em;
-    color: #007bff;
+    font-size: 1.4rem;
+    color: var(--accent-color);
 }
 
 .totals-card p {
-    font-size: 2em;
+    font-size: 2rem;
     margin: 0;
     font-weight: bold;
-    color: #343a40;
+    color: var(--text-color);
 }
 
-/* Orders Table */
+/* Orders table */
 .orders-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 40px;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .orders-table th,
 .orders-table td {
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
     padding: 12px;
     text-align: center;
     vertical-align: middle;
-    font-size: 0.95em;
+    font-size: 0.95rem;
 }
 
 .orders-table th {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--text-color);
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .orders-table tr:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: #1a1a1a;
 }
 
 .orders-table tr:hover {
-    background-color: #e2e6ea;
+    background-color: #333333;
 }
 
-/* Status Cell Styling */
+/* Status cell styling */
 .status-cell {
     cursor: pointer;
     font-weight: bold;
@@ -105,53 +122,52 @@
 }
 
 .status-cell.fulfilled {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--success-color);
+    color: var(--text-color);
 }
 
 .status-cell.not-fulfilled {
-    background-color: #ffc107;
+    background-color: var(--warning-color);
     color: #212529;
 }
 
 .status-cell.voided {
-    background-color: #6c757d;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     text-decoration: line-through;
 }
 
-/* Buttons Styling */
+/* Buttons */
 .void-button,
 .reinstate-button {
     border: none;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1rem;
     padding: 8px 12px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    color: var(--text-color);
 }
 
-/* Red 'X' Button */
+/* Void button */
 .void-button {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--danger-color);
 }
 
 .void-button:hover {
     background-color: #c82333;
 }
 
-/* Blue 'Reinstate' Button */
+/* Reinstate button */
 .reinstate-button {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--accent-color);
 }
 
 .reinstate-button:hover {
-    background-color: #0056b3;
+    background-color: #9d5ce5;
 }
 
-/* User Info Styling */
+/* User info */
 .user-info {
     text-align: left;
 }
@@ -162,7 +178,7 @@
 }
 
 .user-info a {
-    color: #007bff;
+    color: var(--accent-color);
     text-decoration: none;
 }
 
@@ -170,7 +186,7 @@
     text-decoration: underline;
 }
 
-/* Items List Styling */
+/* Items list */
 .items-list {
     list-style-type: none;
     padding: 0;
@@ -182,7 +198,42 @@
     text-align: left;
 }
 
-/* Responsive Design */
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes dropIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
     .totals-container {
         flex-direction: column;
@@ -196,15 +247,15 @@
 
     .orders-table th,
     .orders-table td {
-        font-size: 0.85em;
+        font-size: 0.85rem;
         padding: 8px;
     }
 
     .order-dashboard h1 {
-        font-size: 2em;
+        font-size: 2rem;
     }
 
     .order-dashboard h2 {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 }

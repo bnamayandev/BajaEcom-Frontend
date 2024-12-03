@@ -1,15 +1,21 @@
+/* Root variables for colors */
+:root {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #8338ec;
+}
+
+/* Navbar styling */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #010011;
-    /* Dark blue color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color);
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .logoContainer {
@@ -17,7 +23,7 @@
 }
 
 .logo {
-    width: 250px;
+    width: 180px;
     height: auto;
 }
 
@@ -37,30 +43,37 @@
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    color: #ffffff;
+    color: var(--text-color);
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 8px;
     transition: background-color 0.3s ease;
 }
 
 .navLink:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(131, 56, 236, 0.2);
+}
+
+.cartLink {
+    position: relative;
 }
 
 .cartCount {
+    position: absolute;
+    top: -8px;
+    right: -16px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 20px;
     height: 20px;
     background-color: #ff4757;
-    color: #ffffff;
+    color: var(--text-color);
     font-size: 0.8rem;
     font-weight: bold;
     border-radius: 50%;
-    margin-left: 0.5rem;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -78,5 +91,16 @@
 
     .navItem {
         margin: 0.5rem 0;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

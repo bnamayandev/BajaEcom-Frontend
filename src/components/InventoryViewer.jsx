@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getInventory } from "../api/inventory";
+import { getInventory } from '../api/inventory';
 import './InventoryViewer.css';
 import { useNavigate } from 'react-router-dom';
 
 const InventoryViewer = ({ addToCart }) => {
   const [inventory, setInventory] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [selectedSize, setSelectedSize] = useState({});
   const [selectedQuantity, setSelectedQuantity] = useState({});
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ const InventoryViewer = ({ addToCart }) => {
           // Token is invalid or expired, redirect to login
           navigate('/login');
         } else {
-          setError("Failed to fetch inventory");
-          console.error("Error Fetching Inventory: ", error);
+          setError('Failed to fetch inventory');
+          console.error('Error Fetching Inventory: ', error);
         }
       }
     };
@@ -60,7 +60,7 @@ const InventoryViewer = ({ addToCart }) => {
     addToCart({
       item_id: sizeInfo.item_id,
       productName: item.clothing_type,
-      productDescription: 'Description of the product',
+      productDescription: item.description,
       price: parseFloat(item.price),
       size: sizeInfo.size,
       quantity,
@@ -68,22 +68,25 @@ const InventoryViewer = ({ addToCart }) => {
   };
 
   return (
-    <div>
-      <br />
+    <div className="inventory-container">
+      {error && <p className="error">{error}</p>}
       <div className="inventory-grid">
         {inventory.map((item) => (
           <div key={item.clothing_type} className="item-container">
             <p className="item-name">{item.clothing_type}</p>
-            <img src={item.item_photo} alt="Product Image" width={200} />
+            <img src={item.item_photo} alt="Product" className="item-image" />
             <p>{item.description}</p>
-            <p>Price: ${item.price}</p>
+            <p className="item-price">Price: ${item.price}</p>
 
             <div className="size-selection">
               <p>Select Size:</p>
               {item.sizes.map((sizeInfo) => (
                 <button
                   key={sizeInfo.item_id}
-                  className={`size-button ${selectedSize[item.clothing_type]?.item_id === sizeInfo.item_id ? 'selected' : ''} ${sizeInfo.quantity_available === 0 ? 'sold-out' : ''}`}
+                  className={`size-button ${selectedSize[item.clothing_type]?.item_id === sizeInfo.item_id
+                      ? 'selected'
+                      : ''
+                    } ${sizeInfo.quantity_available === 0 ? 'sold-out' : ''}`}
                   onClick={() => handleSizeSelect(item, sizeInfo)}
                   disabled={sizeInfo.quantity_available === 0}
                 >
@@ -92,27 +95,24 @@ const InventoryViewer = ({ addToCart }) => {
               ))}
             </div>
 
-            <label>
+            <label className="quantity-label">
               Quantity:
               <input
                 type="number"
                 min="1"
-                max={
-                  selectedSize[item.clothing_type]?.quantity_available || 1
-                }
+                max={selectedSize[item.clothing_type]?.quantity_available || 1}
                 value={selectedQuantity[item.clothing_type] || 1}
                 onChange={(e) => handleQuantityChange(item, e.target.value)}
                 disabled={!selectedSize[item.clothing_type]}
               />
             </label>
 
-            <button className="button" onClick={() => handleAddToCart(item)}>
+            <button className="add-to-cart-button" onClick={() => handleAddToCart(item)}>
               Add to Cart
             </button>
           </div>
         ))}
       </div>
-      {error && <p className="error">{error}</p>}
     </div>
   );
 };
