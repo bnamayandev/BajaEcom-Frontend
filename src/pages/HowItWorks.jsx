@@ -14,10 +14,13 @@ const HowItWorks = () => {
                         <strong>Check Your Email:</strong> After placing your order, you'll receive a confirmation email.
                     </li>
                     <li>
-                        <strong>Pickup Details:</strong> A Baja team member will contact you as the pickup deadline approaches to arrange the details.
+                        <strong>Pickup Details:</strong> A Baja team member will contact via text and/or email you as the pickup deadline approaches to arrange the details.
                     </li>
                     <li>
                         <strong>Payment:</strong> All transactions are handled in cash or e-transfer upon pickup.
+                    </li>
+                    <li>
+                        <strong>Voiding:</strong> If you do not respond to Western Baja's texts and/or emails, your order will be cancelled, and you will have to re-place an order.
                     </li>
                 </ol>
             </div>
