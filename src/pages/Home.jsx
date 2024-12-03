@@ -38,7 +38,7 @@ const Home = ({ addToCart, cart }) => {
     <div className="home-container">
       <div className='home' style={{ backgroundImage: `url(${currentImage})` }}>
         <div className='home-overlay' style={{ backgroundImage: `url(${nextImage})` }}></div>
-        <h1>Official Western Baja Merch Store</h1>
+        <h1>OFFICIAL WESTERN BAJA RACING MERCH STORE</h1>
       </div>
       <div className='cardSec'>
         <InventoryViewer addToCart={addToCart} cart={cart} />

@@ -35,10 +35,14 @@
 }
 
 .home>h1 {
-    font-size: 3rem;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1em;
+    color: rgb(255, 255, 255);
+    letter-spacing: 0em;
     text-align: center;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.908);
     padding: 0 20px;
     z-index: 1;
 }

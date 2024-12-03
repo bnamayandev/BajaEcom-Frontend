@@ -13,22 +13,22 @@ const Navbar = ({ count }) => {
       <ul className="navList">
         <li className="navItem">
           <Link to="/" className="navLink">
-            Home
+            HOME
           </Link>
         </li>
         <li className="navItem">
           <Link to="/howitworks" className="navLink">
-            How It Works
+            HOW IT WORKS
           </Link>
         </li>
         <li className="navItem">
           <Link to="/account" className="navLink">
-            Account
+            ACCOUNT
           </Link>
         </li>
         <li className="navItem">
           <Link to="/cart" className="navLink cartLink">
-            Cart <span className="cartCount">{count}</span>
+            CART <span className="cartCount">{count}</span>
           </Link>
         </li>
       </ul>

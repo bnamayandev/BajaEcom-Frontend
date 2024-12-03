@@ -58,6 +58,7 @@ function Login({ onLogin }) {
                     Sign up here
                 </Link>
             </p>
+            <h3>YOU MUST CREATE AN ACCOUNT AND SIGN IN TO VIEW THIS WEBSITE.</h3>
         </div>
     );
 }

@@ -76,6 +76,12 @@
     animation: dropIn 0.8s ease-in-out;
 }
 
+h3 {
+    margin-top: 2rem;
+    color: #654dff;
+    font-weight: bold;
+}
+
 /* Redirect message styling */
 .redirect-message {
     margin-top: 1rem;
