@@ -1,78 +1,210 @@
-/* src/components/OrderDashboard.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 .order-dashboard {
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
 }
 
+/* Error Message Styling */
 .error {
-    color: red;
+    color: #dc3545;
     font-weight: bold;
-}
-
-.totals-container {
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 20px;
 }
 
+/* Heading Styles */
+.order-dashboard h1 {
+    font-size: 2.5em;
+    color: #343a40;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.order-dashboard h2 {
+    font-size: 1.8em;
+    color: #343a40;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+}
+
+/* Totals Container */
+.totals-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
 .totals-card {
-    background-color: #f8f8f8;
-    padding: 15px;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #ffffff, #e6e6e6);
+    padding: 25px;
+    border-radius: 12px;
     text-align: center;
     flex: 1;
-    margin: 0 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
 }
 
 .totals-card h2 {
-    margin: 0 0 10px 0;
-    font-size: 1.2em;
-    color: #333;
+    margin: 0 0 15px 0;
+    font-size: 1.4em;
+    color: #007bff;
 }
 
 .totals-card p {
-    font-size: 1.8em;
+    font-size: 2em;
     margin: 0;
     font-weight: bold;
-    color: #007BFF;
+    color: #343a40;
 }
 
+/* Orders Table */
 .orders-table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 40px;
 }
 
 .orders-table th,
 .orders-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 1px solid #dee2e6;
+    padding: 12px;
     text-align: center;
+    vertical-align: middle;
+    font-size: 0.95em;
 }
 
 .orders-table th {
-    background-color: #f2f2f2;
+    background-color: #007bff;
+    color: white;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .orders-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f8f9fa;
 }
 
 .orders-table tr:hover {
-    background-color: #eaeaea;
+    background-color: #e2e6ea;
 }
 
+/* Status Cell Styling */
 .status-cell {
     cursor: pointer;
     font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    text-transform: capitalize;
 }
 
 .status-cell.fulfilled {
-    color: green;
+    background-color: #28a745;
+    color: white;
 }
 
 .status-cell.not-fulfilled {
-    color: red;
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.status-cell.voided {
+    background-color: #6c757d;
+    color: white;
+    text-decoration: line-through;
+}
+
+/* Buttons Styling */
+.void-button,
+.reinstate-button {
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Red 'X' Button */
+.void-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.void-button:hover {
+    background-color: #c82333;
+}
+
+/* Blue 'Reinstate' Button */
+.reinstate-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.reinstate-button:hover {
+    background-color: #0056b3;
+}
+
+/* User Info Styling */
+.user-info {
+    text-align: left;
+}
+
+.user-info span {
+    display: block;
+    font-weight: 500;
+}
+
+.user-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.user-info a:hover {
+    text-decoration: underline;
+}
+
+/* Items List Styling */
+.items-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.items-list li {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .totals-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .totals-card {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        font-size: 0.85em;
+        padding: 8px;
+    }
+
+    .order-dashboard h1 {
+        font-size: 2em;
+    }
+
+    .order-dashboard h2 {
+        font-size: 1.5em;
+    }
 }

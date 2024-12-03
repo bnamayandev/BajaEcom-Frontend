@@ -36,3 +36,17 @@ export const toggleFulfillmentStatus = async (id, staffSignoff) => {
         }
     );
 };
+
+export const toggleVoidStatus = async (id) => {
+    const token = getAuthToken();
+    return axios.put(
+        `${API_URL}/orders/${id}/void`,
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
+};
+
