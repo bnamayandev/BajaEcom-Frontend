@@ -76,6 +76,25 @@
     animation: dropIn 0.8s ease-in-out;
 }
 
+/* Redirect message styling */
+.redirect-message {
+    margin-top: 1rem;
+    color: var(--text-color);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.redirect-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.redirect-link:hover {
+    color: #9d5ce5;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {

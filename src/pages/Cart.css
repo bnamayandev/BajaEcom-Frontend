@@ -1,40 +1,51 @@
+/* Root variables for colors */
 :root {
-    --primary-color: #3a86ff;
-    --secondary-color: #8338ec;
-    --background-color: #ffffff;
-    --text-color: #333333;
-    --border-color: #e0e0e0;
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #8338ec;
+    --secondary-accent: #3a86ff;
+    --border-color: #444444;
 }
 
+/* Container styling */
 .cart-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: var(--background-color);
+    color: var(--text-color);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-in-out;
 }
 
-.cart-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-
+/* Title styling */
 .cart-title {
-    font-size: 2rem;
-    color: var(--primary-color);
+    font-size: 2.5rem;
+    color: var(--accent-color);
     margin-bottom: 1.5rem;
     text-align: center;
     font-weight: 600;
+    animation: dropIn 0.8s ease-in-out;
 }
 
+/* Empty cart message */
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Cart items */
 .cart-items {
     margin-bottom: 2rem;
+    animation: slideIn 0.8s ease-in-out;
 }
 
 .cart-item {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
@@ -46,12 +57,13 @@
 }
 
 .item-details {
-    flex: 1;
+    flex: 1 1 60%;
+    margin-right: 1rem;
 }
 
 .item-details h3 {
     margin-bottom: 0.5rem;
-    color: var(--secondary-color);
+    color: var(--secondary-accent);
 }
 
 .item-details p {
@@ -59,7 +71,9 @@
     color: var(--text-color);
 }
 
+/* Item actions */
 .item-actions {
+    flex: 1 1 35%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -71,7 +85,7 @@
     margin-bottom: 0.5rem;
 }
 
-.item-actions .quantity-input {
+.quantity-input {
     width: 60px;
     margin-left: 0.5rem;
     padding: 0.25rem;
@@ -79,11 +93,13 @@
     border: 1px solid var(--border-color);
     border-radius: 4px;
     text-align: center;
+    background-color: transparent;
+    color: var(--text-color);
 }
 
-.item-actions .quantity-input:focus {
+.quantity-input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--accent-color);
 }
 
 .item-actions p {
@@ -93,70 +109,74 @@
 
 .remove-item-btn {
     padding: 0.5rem 1rem;
-    background-color: var(--secondary-color);
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--text-color);
     border: none;
     border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .remove-item-btn:hover {
-    background-color: #5d2ebc;
+    background-color: #9d5ce5;
 }
 
+/* Cart total */
 .cart-total {
     text-align: right;
-    font-size: 1.5rem;
-    color: var(--primary-color);
+    font-size: 1.8rem;
+    color: var(--accent-color);
     margin-bottom: 2rem;
 }
 
+/* Pickup section */
 .pickup-section {
     margin-bottom: 2rem;
 }
 
 .pickup-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--text-color);
     margin-bottom: 1rem;
     font-weight: 500;
 }
 
+/* Date picker */
 .date-picker {
     width: 100%;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
+    background-color: transparent;
+    color: var(--text-color);
     transition: border-color 0.3s ease;
 }
 
 .date-picker:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--accent-color);
 }
 
+/* Place order button */
 .place-order-btn {
     display: block;
     width: 100%;
     padding: 1rem;
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--text-color);
     border: none;
     border-radius: 8px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .place-order-btn:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #9d5ce5;
 }
 
 /* Adjusting the DatePicker styles */
@@ -174,23 +194,26 @@
     font-size: 1rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
+    background-color: transparent;
+    color: var(--text-color);
     transition: border-color 0.3s ease;
 }
 
 .react-datepicker__input-container input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--accent-color);
 }
 
 .react-datepicker {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: inherit;
     border: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
+    background-color: var(--background-color);
 }
 
 .react-datepicker__header {
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
@@ -198,7 +221,7 @@
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-    color: white;
+    color: var(--text-color);
 }
 
 .react-datepicker__day-name,
@@ -207,10 +230,10 @@
 }
 
 .react-datepicker__day--selected,
-.react-datepicker__day--in-selecting-range,
-.react-datepicker__day--in-range {
-    background-color: var(--primary-color);
-    color: white;
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__time-list-item--selected {
+    background-color: var(--secondary-accent);
+    color: var(--text-color);
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
@@ -223,5 +246,68 @@
 }
 
 .react-datepicker__time-list-item--selected {
-    background-color: var(--primary-color) !important;
+    background-color: var(--secondary-accent) !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes dropIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-actions {
+        align-items: flex-start;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .item-actions label {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .item-actions p,
+    .remove-item-btn {
+        align-self: flex-end;
+    }
+
+    .cart-total {
+        text-align: left;
+    }
 }

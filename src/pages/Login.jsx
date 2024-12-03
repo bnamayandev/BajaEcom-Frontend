@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Added Link import
 import './Login.css'; // Import the CSS file
 
 function Login({ onLogin }) {
@@ -24,7 +24,7 @@ function Login({ onLogin }) {
             // Call the onLogin prop to notify parent component
             onLogin(response.data.token);
 
-            // Redirect or show success message
+            // Redirect to home page
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.error || 'Login failed');
@@ -52,6 +52,12 @@ function Login({ onLogin }) {
                 <button type="submit">Login</button>
                 {error && <p className="error">{error}</p>}
             </form>
+            <p className="redirect-message">
+                Don't have an account?{' '}
+                <Link to="/signup" className="redirect-link">
+                    Sign up here
+                </Link>
+            </p>
         </div>
     );
 }

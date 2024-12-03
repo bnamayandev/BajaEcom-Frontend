@@ -45,7 +45,7 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
     <div className="cart-container">
       <h2 className="cart-title">Cart</h2>
       {cart.length === 0 ? (
-        <p>No items in cart</p>
+        <p className="empty-cart-message">No items in cart</p>
       ) : (
         <>
           <div className="cart-items">
@@ -95,7 +95,7 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
               dateFormat="MMMM d, yyyy h:mm aa"
               placeholderText="Select a date and time"
               className="date-picker"
-              filterDate={isWeekday}        // Only allow weekdays
+              filterDate={isWeekday} // Only allow weekdays
               filterTime={filterPassedTime} // Filter allowed times
             />
           </div>

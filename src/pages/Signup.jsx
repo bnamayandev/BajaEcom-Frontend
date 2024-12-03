@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Added Link import
 import './Signup.css'; // Import the CSS file
 
 function Signup() {
@@ -100,6 +100,12 @@ function Signup() {
                 <button type="submit">Sign Up</button>
                 {error && <p className="error">{error}</p>}
             </form>
+            <p className="redirect-message">
+                Already have an account?{' '}
+                <Link to="/login" className="redirect-link">
+                    Log in here
+                </Link>
+            </p>
         </div>
     );
 }
