@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Account from './pages/Account';
@@ -12,6 +12,7 @@ import OrderConfirmedPage from './pages/OrderConfirmedPage';
 import { createOrder } from './api/orders';
 import 'react-datepicker/dist/react-datepicker.css';
 import SignupConfirmed from './pages/SignupConfirmed';
+import PrivateRoute from './components/PrivateRoute'; // Import the PrivateRoute component
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -36,48 +37,81 @@ function App() {
   };
 
   // Function to add items to the cart
-  function addToCart(item) {
-    const existingItemIndex = cart.findIndex(
-      (cartItem) =>
-        cartItem.item_id === item.item_id && cartItem.size === item.size
-    );
+  const addToCart = (item) => {
+    setCart((prevCart) => {
+      const existingItemIndex = prevCart.findIndex(
+        (cartItem) =>
+          cartItem.item_id === item.item_id && cartItem.size === item.size
+      );
 
-    if (existingItemIndex !== -1) {
-      // Update quantity
-      const updatedCart = [...cart];
-      updatedCart[existingItemIndex].quantity += item.quantity;
-      setCart(updatedCart);
-    } else {
-      setCart([...cart, item]);
+      let updatedCart;
+      if (existingItemIndex !== -1) {
+        // Update quantity
+        updatedCart = [...prevCart];
+        updatedCart[existingItemIndex].quantity += item.quantity;
+      } else {
+        updatedCart = [...prevCart, item];
+      }
+
+      // Update total price and count
+      const newTotalPrice = updatedCart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      const newCount = updatedCart.reduce((count, item) => count + item.quantity, 0);
+
+      setTotalPrice(newTotalPrice);
+      setCount(newCount);
+
+      return updatedCart;
+    });
+  };
+
+  // Function to update the quantity of an item in the cart
+  const updateCartItem = (itemId, size, newQuantity) => {
+    if (newQuantity < 1 || isNaN(newQuantity)) {
+      return;
     }
+    setCart((prevCart) => {
+      const updatedCart = prevCart.map((item) => {
+        if (item.item_id === itemId && item.size === size) {
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      });
+      // Update total price and count
+      const newTotalPrice = updatedCart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      const newCount = updatedCart.reduce((count, item) => count + item.quantity, 0);
 
-    // Update total price and count
-    setTotalPrice(totalPrice + item.price * item.quantity);
-    setCount(count + item.quantity);
-  }
+      setTotalPrice(newTotalPrice);
+      setCount(newCount);
 
-  // Function to render the cart items
-  function cartMapper() {
-    if (!cart || cart.length === 0) {
-      return <p>No items in cart</p>;
-    }
-    return (
-      <div>
-        {cart.map((item) => (
-          <div key={`${item.item_id}-${item.size}`}>
-            <h3>{item.productName}</h3>
-            <p>{item.productDescription}</p>
-            <p>Size: {item.size}</p>
-            <p>Quantity: {item.quantity}</p>
-            <p>Price per item: ${item.price.toFixed(2)}</p>
-            <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
-            <hr />
-          </div>
-        ))}
-        <h3>Total: ${totalPrice.toFixed(2)}</h3>
-      </div>
-    );
-  }
+      return updatedCart;
+    });
+  };
+
+  // Function to remove an item from the cart
+  const removeCartItem = (itemId, size) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.filter(
+        (item) => !(item.item_id === itemId && item.size === size)
+      );
+      // Update total price and count
+      const newTotalPrice = updatedCart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      const newCount = updatedCart.reduce((count, item) => count + item.quantity, 0);
+
+      setTotalPrice(newTotalPrice);
+      setCount(newCount);
+
+      return updatedCart;
+    });
+  };
 
   // Function to place an order
   const placeOrder = async (pickupDateTime) => {
@@ -124,7 +158,7 @@ function App() {
 
   const goToMembersView = () => {
     const passInput = prompt("Enter Password");
-    if(passInput === import.meta.env.VITE_MV_PASSWORD) {
+    if (passInput === import.meta.env.VITE_MV_PASSWORD) {
       navigate('/orderdashboard');
     }
     else {
@@ -137,38 +171,66 @@ function App() {
       <Navbar count={count} />
       <Routes>
         <Route
+          path="/login"
+          element={<Login onLogin={handleLogin} />}
+        />
+        <Route
+          path="/signup"
+          element={<Signup />}
+        />
+        <Route
+          path="/signupconfirmed"
+          element={<SignupConfirmed />}
+        />
+        <Route
+          path="/orderconfirmed"
+          element={<OrderConfirmedPage />}
+        />
+        <Route
           path="/"
           element={
-            <Home
-              addToCart={addToCart}
-              count={count}
-              cart={cart}
-              cartMapper={cartMapper}
-            />
+            <PrivateRoute>
+              <Home
+                addToCart={addToCart}
+                count={count}
+                cart={cart}
+              />
+            </PrivateRoute>
           }
         />
         <Route
           path="/account"
           element={
-            <Account
-              handleLogout={handleLogout}
-              goToMembersView={goToMembersView}
-              token={token}
-            />
+            <PrivateRoute>
+              <Account
+                handleLogout={handleLogout}
+                goToMembersView={goToMembersView}
+                token={token}
+              />
+            </PrivateRoute>
           }
         />
         <Route
           path="/cart"
-          element={<Cart cart={cart} cartMapper={cartMapper} placeOrder={placeOrder} />}
+          element={
+            <PrivateRoute>
+              <Cart
+                cart={cart}
+                updateCartItem={updateCartItem}
+                removeCartItem={removeCartItem}
+                placeOrder={placeOrder}
+              />
+            </PrivateRoute>
+          }
         />
         <Route
           path="/orderdashboard"
-          element={token ? <OrderDashboard /> : <Navigate to="/login" />}
+          element={
+            <PrivateRoute>
+              <OrderDashboard />
+            </PrivateRoute>
+          }
         />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
-        <Route path="/signupconfirmed" element={<SignupConfirmed />} />
       </Routes>
     </div>
   );

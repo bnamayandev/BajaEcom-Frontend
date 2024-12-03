@@ -1,79 +1,104 @@
-body {
-    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 400;
+/* Root variables for colors */
+:root {
+    --background-color: #000000;
+    --card-background: #1e1e1e;
+    --text-color: #ffffff;
+    --accent-color: #8338ec;
+    --border-color: #2f005f;
 }
 
+/* Inventory container */
+.inventory-container {
+    background-color: var(--background-color);
+    padding: 24px;
+    min-height: 100vh;
+}
+
+/* Error message */
+.error {
+    color: #ff6b6b;
+    margin-top: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Inventory grid */
 .inventory-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
-    padding: 24px;
-    background-color: #121212;
+    animation: fadeIn 1s ease-in-out;
 }
 
+/* Item container */
 .item-container {
-    background-color: #1e1e1e;
-    border: 1px solid #2f005f;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
     text-align: center;
+    color: var(--text-color);
 }
 
 .item-container:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(47, 0, 95, 0.2);
+    box-shadow: 0 10px 20px rgba(131, 56, 236, 0.2);
 }
 
+/* Item name */
 .item-name {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--accent-color);
     margin-bottom: 12px;
 }
 
-.item-container img {
+/* Item image */
+.item-image {
     width: 100%;
     height: auto;
     border-radius: 4px;
     margin-bottom: 12px;
 }
 
-.item-container p {
-    font-weight: 500;
-    color: #e0e0e0;
-    margin-bottom: 8px;
+/* Item price */
+.item-price {
+    font-weight: 600;
+    margin-top: 8px;
 }
 
+/* Size selection */
 .size-selection {
     margin: 16px 0;
 }
 
 .size-selection p {
-    color: #ffffff;
+    color: var(--text-color);
     margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .size-button {
     margin: 4px;
     padding: 8px 12px;
     background-color: #2a2a2a;
-    border: 1px solid #2f005f;
-    color: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.2s ease;
 }
 
 .size-button.selected {
-    background-color: #2f005f;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--text-color);
 }
 
 .size-button:hover:not(:disabled) {
-    background-color: #3f007f;
+    background-color: #9d5ce5;
 }
 
 .size-button:disabled {
@@ -81,42 +106,71 @@ body {
     cursor: not-allowed;
 }
 
-.item-container label {
-    color: #ffffff;
+/* Quantity label and input */
+.quantity-label {
+    color: var(--text-color);
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 12px;
 }
 
-.item-container input[type="number"] {
+.quantity-label input {
     margin-left: 8px;
     padding: 6px;
     width: 60px;
     background-color: #2a2a2a;
-    border: 1px solid #2f005f;
-    color: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     border-radius: 4px;
+    text-align: center;
 }
 
-.button {
+/* Add to cart button */
+.add-to-cart-button {
     margin-top: 16px;
     padding: 12px;
     width: 100%;
-    background-color: #2f005f;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--text-color);
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
     font-weight: 600;
     transition: background-color 0.2s ease;
 }
 
-.button:hover {
-    background-color: #3f007f;
+.add-to-cart-button:hover {
+    background-color: #9d5ce5;
 }
 
-.error {
-    color: #ff6b6b;
-    margin-top: 16px;
-    text-align: center;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .item-name {
+        font-size: 1.2rem;
+    }
+
+    .size-button {
+        padding: 6px 10px;
+    }
+
+    .quantity-label {
+        flex-direction: column;
+    }
+
+    .quantity-label input {
+        margin-left: 0;
+        margin-top: 8px;
+    }
 }

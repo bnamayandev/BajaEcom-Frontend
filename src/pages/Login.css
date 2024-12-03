@@ -1,0 +1,144 @@
+/* Root variables for colors */
+:root {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #8338ec;
+    --error-color: #ff4d4d;
+}
+
+/* Container styling */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Form styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    animation: slideIn 0.8s ease-in-out;
+}
+
+.login-form input {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+
+.login-form button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #9d5ce5;
+}
+
+/* Error message styling */
+.error {
+    color: var(--error-color);
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+/* Heading styling */
+.login-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+    text-align: center;
+    animation: dropIn 0.8s ease-in-out;
+}
+
+/* Redirect message styling */
+.redirect-message {
+    margin-top: 1rem;
+    color: var(--text-color);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.redirect-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.redirect-link:hover {
+    color: #9d5ce5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes dropIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+
+    .login-form input,
+    .login-form button {
+        font-size: 1rem;
+    }
+
+    .login-container h2 {
+        font-size: 2rem;
+    }
+}
