@@ -149,7 +149,6 @@ function App() {
       setTotalPrice(0);
       setCount(0);
 
-      alert('Order placed successfully!');
       navigate('/orderconfirmed');
     } catch (error) {
       console.error('Error placing order:', error);

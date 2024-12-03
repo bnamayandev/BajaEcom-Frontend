@@ -133,6 +133,10 @@
 /* Pickup section */
 .pickup-section {
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .pickup-title {
@@ -145,6 +149,8 @@
 /* Date picker */
 .date-picker {
     width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--border-color);
@@ -159,26 +165,7 @@
     border-color: var(--accent-color);
 }
 
-/* Place order button */
-.place-order-btn {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.place-order-btn:hover {
-    background-color: #9d5ce5;
-}
-
-/* Adjusting the DatePicker styles */
+/* React Datepicker Adjustments */
 .react-datepicker-wrapper {
     width: 100%;
 }
@@ -235,18 +222,83 @@
     color: var(--text-color);
 }
 
-.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
-    padding-left: 0;
-    padding-right: 0;
+.react-datepicker__time-container {
+    border-left: 2px solid var(--border-color);
 }
 
-.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
-    width: 100px;
+.react-datepicker__time-box ul.react-datepicker__time-list {
+    padding: 0;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
+.react-datepicker__time-list-item {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.react-datepicker__time-list-item:hover,
 .react-datepicker__time-list-item--selected {
-    background-color: var(--secondary-accent) !important;
+    background-color: var(--secondary-accent);
+    color: var(--text-color);
 }
+
+/* Place order button */
+.place-order-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.place-order-btn:hover {
+    background-color: #9d5ce5;
+}
+
+/* Custom scrollbar styling for the time dropdown */
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+    scrollbar-width: thin;
+    /* For Firefox */
+    scrollbar-color: var(--secondary-accent) var(--background-color);
+    /* Thumb and track colors */
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar {
+    width: 8px;
+    /* Width of the scrollbar for Webkit browsers */
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-track {
+    background: var(--background-color);
+    /* Track color */
+    border-radius: 8px;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-accent);
+    /* Thumb color */
+    border-radius: 8px;
+    border: 2px solid var(--background-color);
+    /* Creates a padding-like effect around the thumb */
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-thumb:hover {
+    background-color: #5a74ff;
+    /* Lighter shade of the secondary accent for hover effect */
+}
+
+
 
 /* Animations */
 @keyframes fadeIn {
@@ -308,5 +360,9 @@
 
     .cart-total {
         text-align: left;
+    }
+
+    .pickup-section .date-picker {
+        max-width: 100%;
     }
 }
