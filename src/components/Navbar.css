@@ -1,4 +1,3 @@
-/* Root variables for colors */
 :root {
     --background-color: #000000;
     --text-color: #ffffff;
@@ -10,12 +9,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0 3rem;
+    /* Keep consistent horizontal padding */
     background-color: var(--background-color);
     position: sticky;
     top: 0;
     z-index: 1000;
     animation: fadeIn 1s ease-in-out;
+    height: 90px;
+    /* Increased navbar height for better appearance */
 }
 
 .logoContainer {
@@ -23,50 +25,72 @@
 }
 
 .logo {
-    width: 180px;
+    width: 300px;
     height: auto;
 }
 
+/* Nav list styling */
 .navList {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
     align-items: center;
+    height: 100%;
+    /* Ensure navList spans the full navbar height */
 }
 
 .navItem {
     margin-left: 2rem;
+    height: 100%;
+    /* Full height of the navbar */
+    display: flex;
+    align-items: center;
 }
 
 .navLink {
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
     color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center the link content */
+    height: 100%;
+    /* Full height of the navbar */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    /* Ensure hover effect spans full height */
 }
 
 .navLink:hover {
-    background-color: rgba(131, 56, 236, 0.2);
+    background-color: rgba(33, 33, 33, 0.727);
+    color: rgb(230, 211, 255);
 }
 
+/* Cart link styling */
 .cartLink {
     position: relative;
 }
 
 .cartCount {
     position: absolute;
-    top: -8px;
-    right: -16px;
+    top: 10px;
+    /* Adjusted positioning to ensure visibility */
+    right: -10px;
+    /* Adjusted positioning for better alignment */
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
-    background-color: #ff4757;
+    width: 24px;
+    /* Increased size for better readability */
+    height: 24px;
+    background-color: #4800ff;
     color: var(--text-color);
     font-size: 0.8rem;
     font-weight: bold;
@@ -78,6 +102,8 @@
     .navbar {
         flex-direction: column;
         padding: 1rem;
+        height: auto;
+        /* Adjust height for mobile views */
     }
 
     .logoContainer {
@@ -91,6 +117,21 @@
 
     .navItem {
         margin: 0.5rem 0;
+    }
+
+    .navLink {
+        font-size: 18px;
+        /* Adjust font size for mobile views */
+        height: auto;
+    }
+
+    .cartCount {
+        top: -5px;
+        /* Adjusted for smaller screens */
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
     }
 }
 
