@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getInventory } from "../api/inventory";
 import './InventoryViewer.css';
+import { useNavigate } from 'react-router-dom';
 
 const InventoryViewer = ({ addToCart }) => {
   const [inventory, setInventory] = useState([]);
   const [error, setError] = useState("");
   const [selectedSize, setSelectedSize] = useState({});
   const [selectedQuantity, setSelectedQuantity] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInventory = async () => {
@@ -14,12 +16,17 @@ const InventoryViewer = ({ addToCart }) => {
         const response = await getInventory();
         setInventory(response.data);
       } catch (error) {
-        setError("Failed to fetch inventory");
-        console.error("Error Fetching Inventory: ", error);
+        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+          // Token is invalid or expired, redirect to login
+          navigate('/login');
+        } else {
+          setError("Failed to fetch inventory");
+          console.error("Error Fetching Inventory: ", error);
+        }
       }
     };
     fetchInventory();
-  }, []);
+  }, [navigate]);
 
   const handleSizeSelect = (item, sizeInfo) => {
     setSelectedSize({ ...selectedSize, [item.clothing_type]: sizeInfo });

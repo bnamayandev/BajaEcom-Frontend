@@ -35,14 +35,18 @@ const OrderDashboard = () => {
 
         ordersData.forEach((order) => {
             const orderTotal = parseFloat(order.order_total) || 0;
-            total += orderTotal;
 
-            if (order.status === 'fulfilled') {
-                fulfilled += orderTotal;
-            } else if (order.status === 'voided') {
+            if (order.status === 'voided') {
                 voided += orderTotal;
+                // Do not add to total revenue
             } else {
-                pending += orderTotal;
+                total += orderTotal;
+
+                if (order.status === 'fulfilled') {
+                    fulfilled += orderTotal;
+                } else {
+                    pending += orderTotal;
+                }
             }
         });
 

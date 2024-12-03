@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css'; // Import the CSS file
 
 function Login({ onLogin }) {
     const [emailOrUsername, setEmailOrUsername] = useState('');
@@ -13,7 +14,7 @@ function Login({ onLogin }) {
 
         try {
             const response = await axios.post('http://localhost:13000/login', {
-                email: emailOrUsername, // Adjusted to use email
+                email: emailOrUsername,
                 password,
             });
 
@@ -24,7 +25,6 @@ function Login({ onLogin }) {
             onLogin(response.data.token);
 
             // Redirect or show success message
-            alert('Login successful!');
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.error || 'Login failed');
@@ -32,9 +32,9 @@ function Login({ onLogin }) {
     };
 
     return (
-        <div>
+        <div className="login-container">
             <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="login-form">
                 <input
                     type="text"
                     placeholder="Email"
@@ -50,8 +50,8 @@ function Login({ onLogin }) {
                     required
                 />
                 <button type="submit">Login</button>
+                {error && <p className="error">{error}</p>}
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 }
