@@ -1,51 +1,122 @@
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+}
+
 .inventory-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 24px;
+    background-color: #121212;
 }
 
 .item-container {
-    border: 1px solid #ccc;
-    padding: 16px;
-    width: 250px;
+    background-color: #1e1e1e;
+    border: 1px solid #2f005f;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.item-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(47, 0, 95, 0.2);
+}
+
+.item-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.item-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.item-container p {
+    font-weight: 500;
+    color: #e0e0e0;
+    margin-bottom: 8px;
 }
 
 .size-selection {
-    margin: 10px 0;
+    margin: 16px 0;
+}
+
+.size-selection p {
+    color: #ffffff;
+    margin-bottom: 8px;
 }
 
 .size-button {
-    margin: 5px;
+    margin: 4px;
     padding: 8px 12px;
-    background-color: #f0f0f0;
-    border: none;
+    background-color: #2a2a2a;
+    border: 1px solid #2f005f;
+    color: #ffffff;
     cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 .size-button.selected {
-    background-color: #007bff;
+    background-color: #2f005f;
     color: white;
 }
 
-.size-button:hover {
-    background-color: #0056b3;
-    color: white;
+.size-button:hover:not(:disabled) {
+    background-color: #3f007f;
+}
+
+.size-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.item-container label {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.item-container input[type="number"] {
+    margin-left: 8px;
+    padding: 6px;
+    width: 60px;
+    background-color: #2a2a2a;
+    border: 1px solid #2f005f;
+    color: #ffffff;
+    border-radius: 4px;
 }
 
 .button {
-    margin-top: 10px;
-    padding: 10px;
+    margin-top: 16px;
+    padding: 12px;
     width: 100%;
-    background-color: #28a745;
+    background-color: #2f005f;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
 }
 
 .button:hover {
-    background-color: #218838;
+    background-color: #3f007f;
 }
 
 .error {
-    color: red;
+    color: #ff6b6b;
+    margin-top: 16px;
+    text-align: center;
 }
