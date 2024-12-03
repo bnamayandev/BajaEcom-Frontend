@@ -1,0 +1,91 @@
+/* Root variables for colors */
+:root {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #8338ec;
+}
+
+/* Container styling */
+.how-it-works-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 80vh;
+    padding: 2rem;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading styling */
+.how-it-works-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+    text-align: center;
+    animation: dropIn 0.8s ease-in-out;
+}
+
+/* Instructions styling */
+.instructions {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    animation: slideIn 0.8s ease-in-out;
+}
+
+.instructions ol {
+    list-style: decimal inside;
+}
+
+.instructions li {
+    margin-bottom: 1.5rem;
+}
+
+.instructions strong {
+    color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes dropIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .how-it-works-container h1 {
+        font-size: 2rem;
+    }
+
+    .instructions {
+        font-size: 1rem;
+    }
+}

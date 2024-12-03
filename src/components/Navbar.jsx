@@ -15,8 +15,8 @@ const Navbar = ({ count }) => {
           </Link>
         </li>
         <li className="navItem">
-          <Link to="/contact" className="navLink">
-            Contact Us
+          <Link to="/howitworks" className="navLink">
+            How It Works
           </Link>
         </li>
         <li className="navItem">
@@ -35,4 +35,3 @@ const Navbar = ({ count }) => {
 };
 
 export default Navbar;
-
