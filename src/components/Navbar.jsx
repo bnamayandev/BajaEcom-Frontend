@@ -6,7 +6,9 @@ const Navbar = ({ count }) => {
   return (
     <nav className="navbar">
       <div className="logoContainer">
-        <img src="/logo.png" alt="Logo" className="logo" />
+        <Link to="/">
+          <img src="/logo.png" alt="Logo" className="logo" />
+        </Link>
       </div>
       <ul className="navList">
         <li className="navItem">
