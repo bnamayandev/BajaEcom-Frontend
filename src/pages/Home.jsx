@@ -13,7 +13,6 @@ const Home = ({addToCart, cart, cartMapper}) => {
       </div>
       <div className='cardSec'>
         {InventoryViewer(addToCart={addToCart}, cart={cart})}
-        {cartMapper()}
         <button onClick={() => navigate("/cart")}>Go to Cart</button>   
         <br/>
       </div>
