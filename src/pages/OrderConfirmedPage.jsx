@@ -7,7 +7,7 @@ const OrderConfirmedPage = () => {
     return (
         <div className="order-confirmed-container">
             <h1>Order Confirmed</h1>
-            <p>Thank you for your purchase!</p>
+            <p>Thank you for your purchase! Check your email for and order confirmation. The Western Baja team will contact you nearing your pickup time.</p>
             <Link className="link-home" to="/">
                 Return to Home
             </Link>

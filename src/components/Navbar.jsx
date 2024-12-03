@@ -6,7 +6,9 @@ const Navbar = ({ count }) => {
   return (
     <nav className="navbar">
       <div className="logoContainer">
-        <img src="/logo.png" alt="Logo" className="logo" />
+        <Link to="/">
+          <img src="/logo.png" alt="Logo" className="logo" />
+        </Link>
       </div>
       <ul className="navList">
         <li className="navItem">
@@ -15,8 +17,8 @@ const Navbar = ({ count }) => {
           </Link>
         </li>
         <li className="navItem">
-          <Link to="/contact" className="navLink">
-            Contact Us
+          <Link to="/howitworks" className="navLink">
+            How It Works
           </Link>
         </li>
         <li className="navItem">
@@ -35,4 +37,3 @@ const Navbar = ({ count }) => {
 };
 
 export default Navbar;
-

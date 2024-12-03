@@ -12,7 +12,8 @@ import OrderConfirmedPage from './pages/OrderConfirmedPage';
 import { createOrder } from './api/orders';
 import 'react-datepicker/dist/react-datepicker.css';
 import SignupConfirmed from './pages/SignupConfirmed';
-import PrivateRoute from './components/PrivateRoute'; // Import the PrivateRoute component
+import PrivateRoute from './components/PrivateRoute';
+import HowItWorks from './pages/HowItWorks';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -185,6 +186,10 @@ function App() {
         <Route
           path="/orderconfirmed"
           element={<OrderConfirmedPage />}
+        />
+        <Route
+          path="/howitworks"
+          element={<HowItWorks />}
         />
         <Route
           path="/"
