@@ -1,10 +1,11 @@
-/* Root variables for colors */
+/* Root variables for colors and fonts */
 :root {
     --background-color: #000000;
     --card-background: #1e1e1e;
-    --text-color: #ffffff;
+    --text-color: #ca8fff;
     --accent-color: #8338ec;
     --border-color: #2f005f;
+    --font-family: 'Poppins', sans-serif;
 }
 
 /* Inventory container */
@@ -12,6 +13,7 @@
     background-color: var(--background-color);
     padding: 24px;
     min-height: 100vh;
+    font-family: var(--font-family);
 }
 
 /* Error message */
@@ -20,6 +22,8 @@
     margin-top: 16px;
     text-align: center;
     font-weight: bold;
+    font-family: var(--font-family);
+    text-transform: uppercase;
 }
 
 /* Inventory grid */
@@ -52,8 +56,11 @@
 .item-name {
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--accent-color);
+    color: #ffffff;
     margin-bottom: 12px;
+    text-transform: uppercase;
+    font-family: var(--font-family);
+    font-weight: 900;
 }
 
 /* Item image */
@@ -68,6 +75,8 @@
 .item-price {
     font-weight: 600;
     margin-top: 8px;
+    text-transform: uppercase;
+    font-family: var(--font-family);
 }
 
 /* Size selection */
@@ -79,6 +88,8 @@
     color: var(--text-color);
     margin-bottom: 8px;
     font-weight: 500;
+    text-transform: uppercase;
+    font-family: var(--font-family);
 }
 
 .size-button {
@@ -90,6 +101,8 @@
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.2s ease;
+    font-family: var(--font-family);
+    text-transform: uppercase;
 }
 
 .size-button.selected {
@@ -113,6 +126,8 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 12px;
+    text-transform: uppercase;
+    font-family: var(--font-family);
 }
 
 .quantity-label input {
@@ -138,6 +153,8 @@
     border-radius: 8px;
     font-weight: 600;
     transition: background-color 0.2s ease;
+    text-transform: uppercase;
+    font-family: var(--font-family);
 }
 
 .add-to-cart-button:hover {
