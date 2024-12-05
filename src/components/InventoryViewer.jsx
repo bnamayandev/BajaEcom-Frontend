@@ -1,3 +1,4 @@
+// InventoryViewer.jsx
 import React, { useState, useEffect } from 'react';
 import { getInventory } from '../api/inventory';
 import './InventoryViewer.css';
@@ -64,6 +65,8 @@ const InventoryViewer = ({ addToCart }) => {
       price: parseFloat(item.price),
       size: sizeInfo.size,
       quantity,
+      item_photo: item.item_photo, // Added item_photo
+      quantity_available: sizeInfo.quantity_available, // Added quantity_available
     });
   };
 

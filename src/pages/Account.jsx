@@ -9,9 +9,14 @@ const Account = ({ handleLogout, goToMembersView, token }) => {
       <h1 className="account-title">Account</h1>
       <div className="button-container">
         {token ? (
-          <button className="button danger-button" onClick={handleLogout}>
-            Logout
-          </button>
+          <>
+            <button className="button primary-button" onClick={() => navigate('/my-orders')}>
+              My Orders
+            </button>
+            <button className="button danger-button" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
         ) : (
           <>
             <button className="button primary-button" onClick={() => navigate('/login')}>
