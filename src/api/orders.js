@@ -1,11 +1,14 @@
+// src/api/orders.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:13000'; // Update if your backend runs on a different port or domain
+// Use Vite's environment variable
+const API_URL = import.meta.env.VITE_API_URL;
 
 const getAuthToken = () => {
     return localStorage.getItem('authToken');
 };
 
+// Fetch all orders
 export const getOrders = async () => {
     const token = getAuthToken();
     return axios.get(`${API_URL}/orders`, {
@@ -15,6 +18,7 @@ export const getOrders = async () => {
     });
 };
 
+// Create a new order
 export const createOrder = async (orderData) => {
     const token = getAuthToken();
     return axios.post(`${API_URL}/orders`, orderData, {
@@ -24,6 +28,7 @@ export const createOrder = async (orderData) => {
     });
 };
 
+// Toggle fulfillment status of an order
 export const toggleFulfillmentStatus = async (id, staffSignoff) => {
     const token = getAuthToken();
     return axios.put(
@@ -37,6 +42,7 @@ export const toggleFulfillmentStatus = async (id, staffSignoff) => {
     );
 };
 
+// Toggle void status of an order
 export const toggleVoidStatus = async (id) => {
     const token = getAuthToken();
     return axios.put(
@@ -50,7 +56,7 @@ export const toggleVoidStatus = async (id) => {
     );
 };
 
-// NEW: Get the user's orders
+// Get the authenticated user's orders
 export const getUserOrders = async () => {
     const token = getAuthToken();
     return axios.get(`${API_URL}/user/orders`, {
@@ -60,7 +66,7 @@ export const getUserOrders = async () => {
     });
 };
 
-// NEW: User cancels their own order
+// User cancels their own order
 export const cancelOrder = async (id) => {
     const token = getAuthToken();
     return axios.put(
