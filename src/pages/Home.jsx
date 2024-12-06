@@ -3,7 +3,7 @@ import './Home.css'
 import InventoryViewer from '../components/InventoryViewer'
 import { useNavigate } from 'react-router-dom'
 
-const images = ['/FunnyImage.jpg', '/image2.jpg', '/image3.jpg', '/image4.jpg'] // Add your image paths here
+const images = ['/FunnyImage.jpg'] // Add your image paths here
 
 const Home = ({ addToCart, cart }) => {
   const navigate = useNavigate();
