@@ -1,3 +1,4 @@
+// src/pages/Signup.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'; // Added Link import
@@ -16,6 +17,9 @@ function Signup() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    // Use Vite's environment variable
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -25,7 +29,7 @@ function Signup() {
 
         if (formData.password === formData.confirm_password) {
             try {
-                await axios.post('http://localhost:13000/signup', formData);
+                await axios.post(`${API_URL}/signup`, formData);
                 setError('');
                 navigate('/signupconfirmed'); // Redirect to confirmation page after signup
             } catch (err) {
@@ -85,7 +89,7 @@ function Signup() {
                     name="password"
                     placeholder="Password"
                     value={formData.password}
-                    onChange={handleChange}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                 />
                 <input
@@ -93,7 +97,7 @@ function Signup() {
                     name="confirm_password"
                     placeholder="Confirm Password"
                     value={formData.confirm_password}
-                    onChange={handleChange}
+                    onChange={(e) => setFormData({ ...formData, confirm_password: e.target.value })}
                     required
                 />
 
