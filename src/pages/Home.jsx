@@ -15,7 +15,7 @@ const Home = ({ addToCart, cart }) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = resolve;
-        img.onerror = reject;
+        img.onerror = reject; // Rejects if image fails to load
         img.src = src;
       });
     };
@@ -23,11 +23,16 @@ const Home = ({ addToCart, cart }) => {
     const rotateImage = async () => {
       const currentIndex = images.indexOf(currentImage);
       const nextIndex = (currentIndex + 1) % images.length;
-      await preloadImage(images[nextIndex]);
-      setNextImage(images[nextIndex]);
-      setTimeout(() => {
-        setCurrentImage(images[nextIndex]);
-      }, 50); // Short delay to ensure smooth transition
+      try {
+        await preloadImage(images[nextIndex]);
+        setNextImage(images[nextIndex]);
+        setTimeout(() => {
+          setCurrentImage(images[nextIndex]);
+        }, 50); // Short delay to ensure smooth transition
+      } catch (error) {
+        console.error(`Error preloading image: ${images[nextIndex]}`, error);
+        // Fallback logic can be implemented here if needed
+      }
     };
 
     const interval = setInterval(rotateImage, 5000);

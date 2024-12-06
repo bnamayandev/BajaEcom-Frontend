@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 :root {
     --background-color: #000000;
     --text-color: #ffffff;
     --accent-color: #8338ec;
     --secondary-accent: #3a86ff;
     --border-color: #444444;
+    --error-color: #dc3545;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Apply Poppins font to all elements */
+* {
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Container styling */
@@ -15,17 +24,15 @@
     color: var(--text-color);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease-in-out;
 }
 
 /* Title styling */
 .cart-title {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 1.5rem;
-    text-align: center;
     font-weight: 600;
-    animation: dropIn 0.8s ease-in-out;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Empty cart message */
@@ -33,20 +40,21 @@
     text-align: center;
     font-size: 1.5rem;
     margin-top: 2rem;
-    animation: fadeIn 1s ease-in-out;
 }
 
 /* Cart items */
 .cart-items {
     margin-bottom: 2rem;
-    animation: slideIn 0.8s ease-in-out;
 }
 
+/* Updated cart-item styles */
 .cart-item {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    /* Use flexbox for alignment */
     align-items: center;
+    /* Align all items vertically in the center */
+    gap: 1.5rem;
+    /* Add spacing between child elements */
     padding: 1rem 0;
     border-bottom: 1px solid var(--border-color);
 }
@@ -55,24 +63,34 @@
     border-bottom: none;
 }
 
+.cart-item-image {
+    flex-shrink: 0;
+    /* Prevent the image from shrinking */
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 .item-details {
-    flex: 1 1 60%;
-    margin-right: 1rem;
+    flex: 1;
+    /* Allow item details to grow and take up available space */
 }
 
 .item-details h3 {
     margin-bottom: 0.5rem;
     color: var(--secondary-accent);
+    font-size: 1.2rem;
 }
 
 .item-details p {
     margin: 0.25rem 0;
     color: var(--text-color);
+    font-size: 1rem;
 }
 
 /* Item actions */
 .item-actions {
-    flex: 1 1 35%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -82,6 +100,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
 .quantity-input {
@@ -101,9 +120,10 @@
     border-color: var(--accent-color);
 }
 
-.item-actions p {
+.item-actions .item-total {
     margin-bottom: 0.5rem;
     font-weight: 600;
+    font-size: 1rem;
 }
 
 .remove-item-btn {
@@ -122,6 +142,13 @@
     background-color: #9d5ce5;
 }
 
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 /* Cart total */
 .cart-total {
     text-align: right;
@@ -133,6 +160,7 @@
 /* Pickup section */
 .pickup-section {
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .pickup-title {
@@ -145,6 +173,7 @@
 /* Date picker */
 .date-picker {
     width: 100%;
+    max-width: 300px;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--border-color);
@@ -157,6 +186,98 @@
 .date-picker:focus {
     outline: none;
     border-color: var(--accent-color);
+}
+
+/* DatePicker custom styles */
+.react-datepicker {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+.react-datepicker__header {
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+    color: var(--text-color);
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+    color: var(--text-color);
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__time-list-item--selected {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.react-datepicker__day--disabled,
+.react-datepicker__time-list-item--disabled {
+    color: #555555;
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+    border-color: var(--text-color);
+}
+
+/* Time container styles */
+.react-datepicker__time-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-left: 1px solid var(--border-color);
+}
+
+.react-datepicker__time {
+    background-color: var(--background-color);
+}
+
+.react-datepicker__time-box {
+    background-color: var(--background-color);
+}
+
+.react-datepicker__time-list {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--background-color);
+}
+
+.react-datepicker__time-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.react-datepicker__time-list::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+.react-datepicker__time-list::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+}
+
+.react-datepicker__time-list-item {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.react-datepicker__time-list-item:hover {
+    background-color: #9d5ce5;
+    color: var(--text-color);
+}
+
+.react-datepicker__time-list-item--selected {
+    background-color: var(--accent-color);
+    color: var(--text-color);
 }
 
 /* Place order button */
@@ -178,121 +299,27 @@
     background-color: #9d5ce5;
 }
 
-/* Adjusting the DatePicker styles */
-.react-datepicker-wrapper {
-    width: 100%;
-}
-
-.react-datepicker__input-container {
-    width: 100%;
-}
-
-.react-datepicker__input-container input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background-color: transparent;
-    color: var(--text-color);
-    transition: border-color 0.3s ease;
-}
-
-.react-datepicker__input-container input:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
-.react-datepicker {
-    font-family: inherit;
-    border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    background-color: var(--background-color);
-}
-
-.react-datepicker__header {
-    background-color: var(--accent-color);
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-}
-
-.react-datepicker__current-month,
-.react-datepicker-time__header,
-.react-datepicker-year-header {
-    color: var(--text-color);
-}
-
-.react-datepicker__day-name,
-.react-datepicker__day {
-    color: var(--text-color);
-}
-
-.react-datepicker__day--selected,
-.react-datepicker__day--keyboard-selected,
-.react-datepicker__time-list-item--selected {
-    background-color: var(--secondary-accent);
-    color: var(--text-color);
-}
-
-.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
-    width: 100px;
-}
-
-.react-datepicker__time-list-item--selected {
-    background-color: var(--secondary-accent) !important;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes dropIn {
-    from {
-        transform: translateY(-30px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 /* Responsive design */
 @media (max-width: 768px) {
     .cart-item {
         flex-direction: column;
+        /* Stack items vertically */
         align-items: flex-start;
+        /* Align items to the left */
+        gap: 1rem;
+        /* Add spacing between stacked elements */
+    }
+
+    .cart-item-image {
+        margin-bottom: 1rem;
+    }
+
+    .item-details {
+        margin-bottom: 1rem;
     }
 
     .item-actions {
         align-items: flex-start;
-        margin-top: 1rem;
         width: 100%;
     }
 
@@ -301,12 +328,11 @@
         width: 100%;
     }
 
-    .item-actions p,
-    .remove-item-btn {
-        align-self: flex-end;
-    }
-
     .cart-total {
         text-align: left;
+    }
+
+    .pickup-section .date-picker {
+        max-width: 100%;
     }
 }

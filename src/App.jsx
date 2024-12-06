@@ -14,6 +14,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import SignupConfirmed from './pages/SignupConfirmed';
 import PrivateRoute from './components/PrivateRoute';
 import HowItWorks from './pages/HowItWorks';
+import UserOrders from './pages/UserOrders';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -149,7 +150,6 @@ function App() {
       setTotalPrice(0);
       setCount(0);
 
-      alert('Order placed successfully!');
       navigate('/orderconfirmed');
     } catch (error) {
       console.error('Error placing order:', error);
@@ -233,6 +233,14 @@ function App() {
           element={
             <PrivateRoute>
               <OrderDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my-orders"
+          element={
+            <PrivateRoute>
+              <UserOrders />
             </PrivateRoute>
           }
         />

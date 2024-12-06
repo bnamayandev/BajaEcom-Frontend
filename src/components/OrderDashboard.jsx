@@ -106,26 +106,22 @@ const OrderDashboard = () => {
                 return;
             }
 
-            // Optimistically update the orders state
-            const updatedOrders = orders.map((order) =>
-                order.order_id === orderId
-                    ? {
-                        ...order,
-                        status: order.status === 'voided' ? 'not fulfilled' : 'voided',
-                    }
-                    : order
-            );
-
-            setOrders(updatedOrders);
-            calculateTotals(updatedOrders); // Recalculate totals with updated orders
-
             // Call the API to toggle void status
             await toggleVoidStatus(orderId);
+
+            // Re-fetch orders to get updated data
+            fetchOrders();
         } catch (error) {
             console.error('Error toggling void status:', error);
-            alert('An error occurred while updating the order void status.');
 
-            // Re-fetch orders to revert optimistic update in case of error
+            // Handle specific error messages
+            if (error.response && error.response.data && error.response.data.error) {
+                alert(error.response.data.error);
+            } else {
+                alert('An error occurred while updating the order void status.');
+            }
+
+            // Re-fetch orders to ensure state is consistent
             fetchOrders();
         }
     };

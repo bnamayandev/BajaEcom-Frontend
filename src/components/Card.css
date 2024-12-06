@@ -1,7 +1,5 @@
-.pCard {
-    
-}
+.pCard {}
 
-.pCard > img {
+.pCard>img {
     width: 400px;
 }
