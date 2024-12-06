@@ -40,7 +40,7 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
 
     if (Object.keys(errors).length > 0) {
       setQuantityErrors(errors);
-      alert('Please adjust quantities according to available stock.');
+      alert('Order not placed, requested amount exceeds stock available.');
       return;
     }
 

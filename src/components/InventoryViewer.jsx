@@ -83,19 +83,22 @@ const InventoryViewer = ({ addToCart }) => {
 
             <div className="size-selection">
               <p>Select Size:</p>
-              {item.sizes.map((sizeInfo) => (
-                <button
-                  key={sizeInfo.item_id}
-                  className={`size-button ${selectedSize[item.clothing_type]?.item_id === sizeInfo.item_id
-                      ? 'selected'
-                      : ''
-                    } ${sizeInfo.quantity_available === 0 ? 'sold-out' : ''}`}
-                  onClick={() => handleSizeSelect(item, sizeInfo)}
-                  disabled={sizeInfo.quantity_available === 0}
-                >
-                  {sizeInfo.size}
-                </button>
-              ))}
+              {item.sizes
+                .sort((a, b) => {
+                  const sizeOrder = ['S', 'M', 'L', 'XL'];
+                  return sizeOrder.indexOf(a.size) - sizeOrder.indexOf(b.size);
+                })
+                .map((sizeInfo) => (
+                  <button
+                    key={sizeInfo.item_id}
+                    className={`size-button ${selectedSize[item.clothing_type]?.item_id === sizeInfo.item_id ? 'selected' : ''
+                      } ${sizeInfo.quantity_available === 0 ? 'sold-out' : ''}`}
+                    onClick={() => handleSizeSelect(item, sizeInfo)}
+                    disabled={sizeInfo.quantity_available === 0}
+                  >
+                    {sizeInfo.size}
+                  </button>
+                ))}
             </div>
 
             <label className="quantity-label">

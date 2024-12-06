@@ -29,9 +29,8 @@
 /* Inventory grid */
 .inventory-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    animation: fadeIn 1s ease-in-out;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
 }
 
 /* Item container */
@@ -39,12 +38,17 @@
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 20px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     transition: all 0.3s ease;
     text-align: center;
     color: var(--text-color);
+    min-height: 460px;
+    max-height: 460px;
+    overflow: hidden;
 }
 
 .item-container:hover {
@@ -54,7 +58,7 @@
 
 /* Item name */
 .item-name {
-    font-size: 1.4rem;
+    font-size: 1.0rem;
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 12px;
@@ -66,7 +70,8 @@
 /* Item image */
 .item-image {
     width: 100%;
-    height: auto;
+    height: 180px;
+    object-fit: cover;
     border-radius: 4px;
     margin-bottom: 12px;
 }
@@ -74,6 +79,7 @@
 /* Item price */
 .item-price {
     font-weight: 600;
+    font-size: 0.9rem;
     margin-top: 8px;
     text-transform: uppercase;
     font-family: var(--font-family);
@@ -82,12 +88,14 @@
 /* Size selection */
 .size-selection {
     margin: 16px 0;
+    text-align: center;
 }
 
 .size-selection p {
     color: var(--text-color);
     margin-bottom: 8px;
     font-weight: 500;
+    font-size: 0.65rem;
     text-transform: uppercase;
     font-family: var(--font-family);
 }
@@ -125,6 +133,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     margin-bottom: 12px;
     text-transform: uppercase;
     font-family: var(--font-family);
@@ -141,9 +150,9 @@
     text-align: center;
 }
 
-/* Add to cart button */
 .add-to-cart-button {
-    margin-top: 16px;
+    margin-top: auto;
+    /* Pushes button to the bottom of the card */
     padding: 12px;
     width: 100%;
     background-color: var(--accent-color);
