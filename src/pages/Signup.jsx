@@ -102,7 +102,7 @@ function Signup() {
                 <input
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Password (Make it unique for this site!)"
                     value={formData.password}
                     onChange={handleChange}
                     required
