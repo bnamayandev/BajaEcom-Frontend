@@ -1,7 +1,12 @@
+import React, { useState, useEffect } from 'react';
+import './Home.css';
+import InventoryViewer from '../components/InventoryViewer';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 const images = ['/FunnyImage.JPG']; // Correct path for public assets
 
 const Home = ({ addToCart, cart }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate hook is now correctly defined
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [nextImage, setNextImage] = useState(images[1]);
 
@@ -10,7 +15,7 @@ const Home = ({ addToCart, cart }) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = resolve;
-        img.onerror = reject; // Rejects if image fails to load
+        img.onerror = reject;
         img.src = src;
       });
     };
@@ -23,7 +28,7 @@ const Home = ({ addToCart, cart }) => {
         setNextImage(images[nextIndex]);
         setTimeout(() => {
           setCurrentImage(images[nextIndex]);
-        }, 50); // Short delay to ensure smooth transition
+        }, 50);
       } catch (error) {
         console.error(`Error preloading image: ${images[nextIndex]}`, error);
       }
@@ -35,15 +40,15 @@ const Home = ({ addToCart, cart }) => {
 
   return (
     <div className="home-container">
-      <div className='home' style={{ backgroundImage: `url(${currentImage})` }}>
-        <div className='home-overlay' style={{ backgroundImage: `url(${nextImage})` }}></div>
+      <div className="home" style={{ backgroundImage: `url(${currentImage})` }}>
+        <div className="home-overlay" style={{ backgroundImage: `url(${nextImage})` }}></div>
         <h1>OFFICIAL WESTERN BAJA RACING MERCH STORE</h1>
       </div>
-      <div className='cardSec'>
+      <div className="cardSec">
         <InventoryViewer addToCart={addToCart} cart={cart} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Home;
