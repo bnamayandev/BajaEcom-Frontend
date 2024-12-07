@@ -89,16 +89,15 @@ function Signup() {
                     name="password"
                     placeholder="Password"
                     value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    onChange={handleChange} // Corrected
                     required
                 />
-
                 <input
                     type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    name="confirm_password"
+                    placeholder="Confirm Password"
+                    value={formData.confirm_password}
+                    onChange={handleChange} // Corrected
                     required
                 />
 
