@@ -21,22 +21,37 @@ function Signup() {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (formData.password === formData.confirm_password) {
-            try {
-                await axios.post(`${API_URL}/signup`, formData);
-                setError('');
-                navigate('/signupconfirmed'); // Redirect to confirmation page after signup
-            } catch (err) {
-                setError(err.response?.data?.error || 'Signup failed');
-            }
-        } else {
+        if (formData.password !== formData.confirm_password) {
             setError('Passwords do not match.');
+            return;
+        }
+
+        try {
+            // Make API call to signup
+            await axios.post(`${API_URL}/signup`, {
+                username: formData.username,
+                email: formData.email,
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+                phone_number: formData.phone_number,
+                password: formData.password
+            });
+
+            setError('');
+            navigate('/signupconfirmed'); // Redirect to confirmation page after signup
+        } catch (err) {
+            console.error('Signup error:', err);
+            setError(err.response?.data?.error || 'Signup failed. Please try again.');
         }
     };
 
@@ -89,15 +104,16 @@ function Signup() {
                     name="password"
                     placeholder="Password"
                     value={formData.password}
-                    onChange={handleChange} // Corrected
+                    onChange={handleChange}
                     required
                 />
+
                 <input
                     type="password"
                     name="confirm_password"
                     placeholder="Confirm Password"
                     value={formData.confirm_password}
-                    onChange={handleChange} // Corrected
+                    onChange={handleChange}
                     required
                 />
 
