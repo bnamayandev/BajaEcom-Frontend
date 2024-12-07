@@ -25,22 +25,29 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
     return day !== 0 && day !== 6;
   };
 
-  // Custom function to filter time based on the day of the week
   const filterTime = (time) => {
     const day = pickupDateTime?.getDay() || new Date().getDay(); // Get selected day
     const hours = time.getHours();
 
+    // Weekday check
+    if (day === 0 || day === 6) {
+      return false; // Disable weekends
+    }
+
+    // Specific hour check (adjust these as needed)
+    if (hours === 10 || hours === 11) {
+      return false; // Gray out 10 AM and 11 AM
+    }
+
+    // Time range based on the day of the week
     if (day === 1 || day === 4) {
-      // Monday or Thursday: 12:00 PM - 9:00 PM
       return hours >= 12 && hours < 21;
     } else if (day === 2 || day === 3 || day === 5) {
-      // Tuesday, Wednesday, or Friday: 12:00 PM - 6:00 PM
       return hours >= 12 && hours < 18;
     }
 
-    return false; // Disable times for weekends
+    return false; // Default to disabled
   };
-
   const handlePlaceOrder = () => {
     const errors = {};
     cart.forEach((item) => {

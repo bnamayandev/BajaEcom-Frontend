@@ -222,7 +222,7 @@
 
 .react-datepicker__day--disabled,
 .react-datepicker__time-list-item--disabled {
-    color: #555555;
+    color: #333333;
 }
 
 .react-datepicker__navigation--previous,
