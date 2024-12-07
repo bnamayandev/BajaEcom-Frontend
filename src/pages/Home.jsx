@@ -1,9 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import './Home.css'
-import InventoryViewer from '../components/InventoryViewer'
-import { useNavigate } from 'react-router-dom'
-
-const images = ['../../public/FunnyImage.jpg']
+const images = ['/FunnyImage.JPG']; // Correct path for public assets
 
 const Home = ({ addToCart, cart }) => {
   const navigate = useNavigate();
@@ -31,7 +26,6 @@ const Home = ({ addToCart, cart }) => {
         }, 50); // Short delay to ensure smooth transition
       } catch (error) {
         console.error(`Error preloading image: ${images[nextIndex]}`, error);
-        // Fallback logic can be implemented here if needed
       }
     };
 
