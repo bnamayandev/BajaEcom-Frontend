@@ -272,7 +272,7 @@
 
 .react-datepicker__time-list-item:hover {
     background-color: #9d5ce5;
-    color: var(--text-color);
+    color: gray;
 }
 
 .react-datepicker__time-list-item--selected {
