@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:13000'; // Update if your backend runs on a different port or domain
+const API_URL = import.meta.env.VITE_API_URL;
 
 const getAuthToken = () => {
     return localStorage.getItem('authToken');

@@ -80,7 +80,7 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
 
   return (
     <div className="cart-container">
-      <h2 className="cart-title">CART</h2>
+      <h2 className="cart-title">Cart</h2>
       {cart.length === 0 ? (
         <p className="empty-cart-message">No items in cart</p>
       ) : (

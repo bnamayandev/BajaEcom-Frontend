@@ -25,7 +25,7 @@ function Signup() {
 
         if (formData.password === formData.confirm_password) {
             try {
-                await axios.post('http://localhost:13000/signup', formData);
+                await axios.post(import.meta.env.VITE_API_URL, formData);
                 setError('');
                 navigate('/signupconfirmed'); // Redirect to confirmation page after signup
             } catch (err) {
