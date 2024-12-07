@@ -8,6 +8,17 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
   const [pickupDateTime, setPickupDateTime] = useState(null);
   const [quantityErrors, setQuantityErrors] = useState({});
 
+  // Calculate tomorrow's date
+  const getTomorrow = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    // Reset time to 00:00:00 for consistency
+    tomorrow.setHours(0, 0, 0, 0);
+    return tomorrow;
+  };
+
+  const tomorrow = getTomorrow();
+
   // Function to check if the selected date is a weekday (Monday to Friday)
   const isWeekday = (date) => {
     const day = date.getDay(); // 0 = Sunday, 6 = Saturday
@@ -131,7 +142,7 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={15}
-              minDate={new Date()}
+              minDate={tomorrow} // Set to tomorrow
               dateFormat="MMMM d, yyyy h:mm aa"
               placeholderText="Select a date and time"
               className="date-picker"
