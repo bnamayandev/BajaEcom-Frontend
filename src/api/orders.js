@@ -1,7 +1,6 @@
 // src/api/orders.js
 import axios from 'axios';
 
-// Use Vite's environment variable
 const API_URL = import.meta.env.VITE_API_URL;
 
 const getAuthToken = () => {
