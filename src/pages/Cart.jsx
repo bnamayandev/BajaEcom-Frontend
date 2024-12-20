@@ -8,16 +8,13 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
   const [pickupDateTime, setPickupDateTime] = useState(null);
   const [quantityErrors, setQuantityErrors] = useState({});
 
-  // Calculate tomorrow's date
-  const getTomorrow = () => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    // Reset time to 00:00:00 for consistency
-    tomorrow.setHours(0, 0, 0, 0);
-    return tomorrow;
+  // Calculate January 6, 2025
+  const getMinBookingDate = () => {
+    const restrictionDate = new Date('2025-01-06T00:00:00');
+    return restrictionDate;
   };
 
-  const tomorrow = getTomorrow();
+  const minBookingDate = getMinBookingDate();
 
   // Function to check if the selected date is a weekday (Monday to Friday)
   const isWeekday = (date) => {
@@ -142,7 +139,7 @@ const Cart = ({ cart, updateCartItem, removeCartItem, placeOrder }) => {
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={15}
-              minDate={tomorrow} // Set to tomorrow
+              minDate={minBookingDate} // Set to January 6, 2025
               dateFormat="MMMM d, yyyy h:mm aa"
               placeholderText="Select a date and time"
               className="date-picker"
