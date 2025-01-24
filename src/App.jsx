@@ -171,35 +171,21 @@ function App() {
     <div>
       <Navbar count={count} />
       <Routes>
-        <Route
-          path="/login"
-          element={<Login onLogin={handleLogin} />}
-        />
-        <Route
-          path="/signup"
-          element={<Signup />}
-        />
-        <Route
-          path="/signupconfirmed"
-          element={<SignupConfirmed />}
-        />
-        <Route
-          path="/orderconfirmed"
-          element={<OrderConfirmedPage />}
-        />
-        <Route
-          path="/howitworks"
-          element={<HowItWorks />}
-        />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signupconfirmed" element={<SignupConfirmed />} />
+        <Route path="/orderconfirmed" element={<OrderConfirmedPage />} />
+        <Route path="/howitworks" element={<HowItWorks />} />
+
+        {/* NEW ROUTES FOR FORGOT/RESET PASSWORD */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
         <Route
           path="/"
           element={
             <PrivateRoute>
-              <Home
-                addToCart={addToCart}
-                count={count}
-                cart={cart}
-              />
+              <Home addToCart={addToCart} count={count} cart={cart} />
             </PrivateRoute>
           }
         />
@@ -207,11 +193,7 @@ function App() {
           path="/account"
           element={
             <PrivateRoute>
-              <Account
-                handleLogout={handleLogout}
-                goToMembersView={goToMembersView}
-                token={token}
-              />
+              <Account handleLogout={handleLogout} token={token} />
             </PrivateRoute>
           }
         />

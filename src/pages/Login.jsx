@@ -1,8 +1,8 @@
 // src/pages/Login.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom'; // Added Link import
-import './Login.css'; // Import the CSS file
+import { useNavigate, Link } from 'react-router-dom';
+import './Login.css';
 
 function Login({ onLogin }) {
     const [emailOrUsername, setEmailOrUsername] = useState('');
@@ -10,7 +10,6 @@ function Login({ onLogin }) {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // Use Vite's environment variable
     const API_URL = import.meta.env.VITE_API_URL;
 
     const handleSubmit = async (e) => {
@@ -22,13 +21,8 @@ function Login({ onLogin }) {
                 password,
             });
 
-            // Store JWT in localStorage
             localStorage.setItem('authToken', response.data.token);
-
-            // Call the onLogin prop to notify parent component
             onLogin(response.data.token);
-
-            // Redirect to home page
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.error || 'Login failed');
@@ -56,12 +50,19 @@ function Login({ onLogin }) {
                 <button type="submit">Login</button>
                 {error && <p className="error">{error}</p>}
             </form>
+
             <p className="redirect-message">
                 Don't have an account?{' '}
                 <Link to="/signup" className="redirect-link">
                     Sign up here
                 </Link>
             </p>
+            <p className="redirect-message">
+                <Link to="/forgot-password" className="redirect-link">
+                    Forgot Password?
+                </Link>
+            </p>
+
             <h3>YOU MUST CREATE AN ACCOUNT AND SIGN IN TO VIEW THIS WEBSITE.</h3>
         </div>
     );
