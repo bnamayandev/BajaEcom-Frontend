@@ -145,3 +145,25 @@
         opacity: 1;
     }
 }
+
+.sale {
+    background-color: red;
+    /* Bold red background */
+    padding: 10px 0;
+    /* Sufficient vertical padding without being too tall */
+    text-align: center;
+    /* Center the content */
+}
+
+.sale h2 {
+    color: white;
+    /* Big white text */
+    font-size: 20px;
+    /* Large enough to grab attention */
+    margin: 0;
+    /* Remove default margins */
+    font-weight: bold;
+    /* Extra emphasis */
+    letter-spacing: 0.05em;
+    /* Optional: a bit of spacing for readability */
+}
