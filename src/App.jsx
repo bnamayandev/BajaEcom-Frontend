@@ -15,6 +15,7 @@ import SignupConfirmed from './pages/SignupConfirmed';
 import PrivateRoute from './components/PrivateRoute';
 import HowItWorks from './pages/HowItWorks';
 import UserOrders from './pages/UserOrders';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -243,6 +244,10 @@ function App() {
               <UserOrders />
             </PrivateRoute>
           }
+        />
+        <Route
+          path="/reset-token"
+          element={<ResetPassword />}
         />
       </Routes>
     </div>
