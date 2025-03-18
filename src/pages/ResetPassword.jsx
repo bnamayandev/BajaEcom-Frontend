@@ -23,6 +23,13 @@ const ResetPassword = () => {
         }
     }, [token]);
 
+    useEffect(() => {
+        console.log("Reset Token:", token);
+        if (!token) {
+            setError('Invalid or missing token.');
+        }
+    }, [token]);
+
     const handleResetPassword = async (e) => {
         e.preventDefault();
         setError('');
